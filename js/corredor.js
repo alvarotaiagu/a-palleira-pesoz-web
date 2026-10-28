@@ -128,7 +128,7 @@
       (quieto ? 'Cada ristra es una cosa de la casa:' : 'Empuja una, o pulsa su nombre, y mira qué hay dentro.') + '</p>' +
       '<div class="corr-pista"><div class="corr-escenario">' +
       '<div class="corr-vista"><div class="corr-escena" role="group" aria-label="El corredor de madera con cuatro ristras de panoyas colgadas">' +
-      '<picture><source type="image/webp" srcset="' + esc(o.base + 'img/corredor/base.webp') + '"><img class="corr-base" src="' + esc(o.base + 'img/corredor/base.jpg') + '" alt="" width="' + ANCHO + '" height="' + ALTO + '" decoding="async"></picture>' +
+      '<picture><source type="image/webp" srcset="' + esc(o.base + 'img/corredor/base.webp?v=ia1') + '"><img class="corr-base" src="' + esc(o.base + 'img/corredor/base.jpg?v=ia1') + '" alt="" width="' + ANCHO + '" height="' + ALTO + '" decoding="async"></picture>' +
       '<div class="corr-capa"><canvas class="corr-lienzo" aria-hidden="true"></canvas>';
     var i;
     if (!quieto) {
