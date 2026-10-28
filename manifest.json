@@ -1,0 +1,13 @@
+{
+  "name": "A Palleira · Casa de Aldea · Pesoz",
+  "short_name": "A Palleira",
+  "lang": "es",
+  "start_url": "./",
+  "display": "browser",
+  "background_color": "#F6EBD3",
+  "theme_color": "#F67B02",
+  "icons": [
+    { "src": "marca/icono-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "marca/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

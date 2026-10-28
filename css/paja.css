@@ -1,0 +1,102 @@
+/* ------------------------------------------------------------------
+   A Palleira · «La paja que se hace casa» (agente Paja): portada y montón del pie.
+   Todo bajo [data-modulo="paja"] y [data-modulo="paja-pie"]. Tokens con var(--x, valor).
+   Lo que es colocación va dentro de :where() (especificidad 0): si la Web pone otra cosa, gana la Web.
+   El lienzo encaja las hebras con la foto tal como caiga (object-fit / object-position), sea cual sea.
+
+   Variables que la Web puede fijar en #portada (se heredan):
+     --paja-banda-arriba   móvil en vertical: dónde empieza la banda del corredor     (max(76px, 13svh))
+     --paja-banda-alto     su alto (72vw: se ve la franja central, u 0,20–0,80)        (72vw)
+   ------------------------------------------------------------------ */
+
+/* ---------- la caja: toda la portada, sobre naranja ---------- */
+:where([data-modulo="paja"]) {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+[data-modulo="paja"] {
+  background:
+    radial-gradient(130% 90% at 30% 36%, var(--naranja, #F67B02) 0%, var(--naranja, #F67B02) 34%, var(--teja, #CC4A00) 100%);
+  /* el dedo aparta la paja en horizontal; el scroll vertical y el zoom son del navegador, siempre */
+  touch-action: pan-y pinch-zoom;
+  isolation: isolate;
+}
+
+/* ---------- la foto (el respaldo y el LCP) ---------- */
+:where([data-modulo="paja"]) picture { display: block; }
+:where([data-modulo="paja"]) img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 45%;
+  display: block;
+}
+/* móvil y tableta en vertical: el corredor en una banda (como en su foto con marco naranja) en vez de un trozo
+   ampliado de una ristra; las hebras vuelan por toda la pantalla y se posan en la banda */
+@media (max-aspect-ratio: 4/5) {
+  :where([data-modulo="paja"]) img {
+    inset: auto 0 auto 0;
+    top: var(--paja-banda-arriba, max(76px, 13svh));
+    height: var(--paja-banda-alto, 72vw);
+    object-position: 50% 50%;
+  }
+}
+[data-modulo="paja"] img { transition: opacity 1.8s cubic-bezier(.25, .6, .2, 1); }
+/* tapada por la cortina: la foto fuera (sin transición: no se ve), sale la paja sobre el naranja */
+[data-modulo="paja"].paja-sin-foto img { opacity: 0; transition: none; }
+/* sin cortina delante: la foto se apaga suave mientras entra la ráfaga */
+[data-modulo="paja"].paja-foto-tenue img { opacity: .12; transition: opacity .7s ease; }
+
+/* ---------- el lienzo de las hebras ---------- */
+[data-modulo="paja"] .paja-lienzo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 1;
+  pointer-events: none;
+}
+/* el dibujo en 2D (quieta y respaldo): aparece al pintarse y se desvanece con el scroll (--paja-ida, del JS) */
+[data-modulo="paja"] .paja-lienzo--2d { opacity: 0; transition: opacity .3s ease; }
+[data-modulo="paja"] .paja-lienzo--2d.es-visible { opacity: calc(1 - var(--paja-ida, 0)); }
+
+/* ---------- marcador de prueba (?paja-info) ---------- */
+[data-modulo="paja"] .paja-info {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  z-index: 5;
+  max-width: calc(100% - 16px);
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: rgb(36 22 12 / .82);
+  color: var(--crema, #F6EBD3);
+  font: 11px/1.3 var(--letra-cifras, ui-monospace, monospace);
+  pointer-events: none;
+}
+
+/* ---------- el montón del pie ---------- */
+:where([data-modulo="paja-pie"]) {
+  position: relative;
+  display: block;
+  height: clamp(72px, 11vw, 150px);
+  overflow: hidden;
+}
+[data-modulo="paja-pie"] { pointer-events: none; }
+[data-modulo="paja-pie"] .paja-pie-lienzo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-modulo="paja"] img,
+  [data-modulo="paja"].paja-foto-tenue img,
+  [data-modulo="paja"] .paja-lienzo--2d { transition: none; }
+}

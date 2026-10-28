@@ -1,0 +1,53 @@
+<!-- ============ pie (marrón): el logo en su caja, dirección, teléfono, registro y legales.
+     [data-modulo="paja-pie"] es el montón de paja de remate (lo pinta Paja si le da tiempo; si no, el pie va limpio) ============ -->
+<footer class="pie sup-marron" id="pie" data-sup="marron">
+  <div class="env">
+    <div class="pie__arriba">
+      <a class="pie__logo" href="./" aria-label="A Palleira, a la portada"><img src="marca/logo-caja.svg" width="360" height="140" alt="A Palleira, casa de aldea" loading="lazy" decoding="async"></a>
+      <div class="pie__frase">
+        <p class="pie__tit">Un pajar en Pesoz, hecho casa para cuatro.</p>
+        <p><a class="btn btn--marca" href="#reservar">Ver fechas</a></p>
+      </div>
+    </div>
+
+    <div class="pie__cols">
+      <div>
+        <h2 class="pie__h">Cómo llegar</h2>
+        <p>El Caleyo, s/n<br>33735 Pesoz (Asturias)</p>
+        <p><a href="#llegar">Mapa y carreteras</a></p>
+      </div>
+      <div>
+        <h2 class="pie__h">Reservas</h2>
+        <p><a href="tel:+34985250581" class="mono">985 250 581</a></p>
+        <p class="pie__fino">Se reserva con Alejandro, el dueño.</p>
+      </div>
+      <div>
+        <h2 class="pie__h">Por aquí</h2>
+        <p><a href="#casa">La casa</a><br><a href="#dentro">Dentro</a><br><a href="#pesoz">Pesoz</a><br><a href="#reservar">Reservar</a></p>
+      </div>
+    </div>
+
+    <div class="pie__legal">
+      <p>Registro de turismo <span class="mono">CA-1033-AS</span> · Casa rural íntegra · 2 trisqueles</p>
+      <nav aria-label="Legal"><a href="aviso-legal.html">Aviso legal</a><a href="privacidad.html">Privacidad</a><a href="cookies.html">Cookies</a><a href="accesibilidad.html">Accesibilidad</a><button type="button" id="abrir-cookies">Preferencias de cookies</button></nav>
+      <p>© <span id="anno">2026</span> A Palleira · El Caleyo, Pesoz (Asturias)</p>
+    </div>
+  </div>
+  <div class="pie__paja" data-modulo="paja-pie" aria-hidden="true"></div>
+</footer>
+
+<div class="cookies" id="cookies" role="region" aria-label="Aviso de cookies" hidden>
+  <p>Esta web no usa cookies de análisis ni de publicidad. Guarda en tu navegador que has visto este aviso; las letras vienen de Google Fonts y el mapa de Google solo se carga si lo pides. <a href="cookies.html">Más información</a></p>
+  <div class="cookies__acc">
+    <button class="btn btn--marca" type="button" id="ck-si">Entendido</button>
+    <button class="btn btn--hueco" type="button" id="ck-no">Solo lo necesario</button>
+  </div>
+</div>
+
+<!-- MANDO DE MAQUETA (no viaja al cliente): solo con ?revision -->
+<div class="mando" id="mando" role="group" aria-label="Dos versiones de la misma web" hidden>
+  <span class="mando__eti">Versión</span>
+  <button type="button" data-densidad="paja" aria-pressed="true">Paja</button>
+  <button type="button" data-densidad="sobria" aria-pressed="false">Sobria</button>
+</div>
+<!-- fin del MANDO DE MAQUETA -->

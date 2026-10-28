@@ -1,0 +1,36 @@
+{
+ "fuente": "ref/fotos/airbnb/09.jpg",
+ "recorte": {
+  "x": 30,
+  "y": 26,
+  "w": 1863,
+  "h": 806
+ },
+ "ancho": 1863,
+ "alto": 806,
+ "bytesPorPunto": 8,
+ "versiones": {
+  "escritorio": {
+   "fichero": "img/paja/puntos-escritorio.bin",
+   "puntos": 36000,
+   "bytes": 288032,
+   "region": [
+    0.0,
+    0.0,
+    1.0,
+    1.0
+   ]
+  },
+  "movil": {
+   "fichero": "img/paja/puntos-movil.bin",
+   "puntos": 12000,
+   "bytes": 96032,
+   "region": [
+    0.2,
+    0.0,
+    0.8,
+    1.0
+   ]
+  }
+ }
+}

@@ -1,0 +1,352 @@
+[
+ {
+  "nombre": "corredor",
+  "anchos": [
+   480,
+   800,
+   1024,
+   1100
+  ],
+  "ancho": 1100,
+  "alto": 476,
+  "origen": "fotos/airbnb/09.jpg",
+  "recorte": {
+   "left": 30,
+   "top": 26,
+   "width": 1863,
+   "height": 806
+  }
+ },
+ {
+  "nombre": "vista-corredor",
+  "anchos": [
+   480,
+   800,
+   1024,
+   1280,
+   1600
+  ],
+  "ancho": 1600,
+  "alto": 1200,
+  "origen": "fotos/airbnb/10.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "vista-mesa",
+  "anchos": [
+   480,
+   800,
+   1024,
+   1280,
+   1600
+  ],
+  "ancho": 1600,
+  "alto": 722,
+  "origen": "fotos/airbnb/27.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "corredor-pasillo",
+  "anchos": [
+   480,
+   800,
+   1024,
+   1280
+  ],
+  "ancho": 1280,
+  "alto": 1707,
+  "origen": "fotos/airbnb/14.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "corredor-banco",
+  "anchos": [
+   480,
+   800,
+   1024,
+   1280
+  ],
+  "ancho": 1280,
+  "alto": 1707,
+  "origen": "fotos/airbnb/15.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "corredor-alto",
+  "anchos": [
+   480,
+   800,
+   1024
+  ],
+  "ancho": 1024,
+  "alto": 2270,
+  "origen": "fotos/airbnb/28.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "patio",
+  "anchos": [
+   480,
+   800,
+   1024,
+   1280,
+   1600
+  ],
+  "ancho": 1600,
+  "alto": 1200,
+  "origen": "fotos/airbnb/16.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "salon-chimenea",
+  "anchos": [
+   480,
+   800,
+   1024,
+   1280,
+   1600
+  ],
+  "ancho": 1600,
+  "alto": 722,
+  "origen": "fotos/airbnb/30.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "salon",
+  "anchos": [
+   480,
+   800,
+   1024
+  ],
+  "ancho": 1024,
+  "alto": 2270,
+  "origen": "fotos/airbnb/32.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "cocina-comedor",
+  "anchos": [
+   480,
+   800,
+   1024,
+   1280,
+   1600
+  ],
+  "ancho": 1600,
+  "alto": 722,
+  "origen": "fotos/airbnb/29.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "comedor",
+  "anchos": [
+   480,
+   800,
+   1024
+  ],
+  "ancho": 1024,
+  "alto": 2270,
+  "origen": "fotos/airbnb/31.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "salon-dia",
+  "anchos": [
+   480,
+   800,
+   1024,
+   1280
+  ],
+  "ancho": 1280,
+  "alto": 960,
+  "origen": "fotos/airbnb/01.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "cocina",
+  "anchos": [
+   480,
+   800,
+   1024,
+   1280
+  ],
+  "ancho": 1280,
+  "alto": 853,
+  "origen": "fotos/airbnb/02.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "mesa",
+  "anchos": [
+   480,
+   800,
+   1024,
+   1280
+  ],
+  "ancho": 1280,
+  "alto": 853,
+  "origen": "fotos/airbnb/03.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "dorm-dos-camas",
+  "anchos": [
+   480,
+   800,
+   1024,
+   1280,
+   1600
+  ],
+  "ancho": 1600,
+  "alto": 722,
+  "origen": "fotos/airbnb/25.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "dorm-matrimonio",
+  "anchos": [
+   480,
+   800,
+   1024,
+   1280,
+   1600
+  ],
+  "ancho": 1600,
+  "alto": 722,
+  "origen": "fotos/airbnb/26.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "dorm-ventana",
+  "anchos": [
+   480,
+   800,
+   1024,
+   1280,
+   1600
+  ],
+  "ancho": 1600,
+  "alto": 722,
+  "origen": "fotos/airbnb/33.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "bano",
+  "anchos": [
+   480,
+   800,
+   1024,
+   1280
+  ],
+  "ancho": 1280,
+  "alto": 853,
+  "origen": "fotos/airbnb/08.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "ventana",
+  "anchos": [
+   480,
+   800,
+   1024
+  ],
+  "ancho": 1024,
+  "alto": 2270,
+  "origen": "fotos/airbnb/34.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "pizarra",
+  "anchos": [
+   480,
+   800,
+   1024,
+   1280
+  ],
+  "ancho": 1280,
+  "alto": 1707,
+  "origen": "fotos/airbnb/22.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "pesoz-primavera",
+  "anchos": [
+   480,
+   800,
+   1024,
+   1280,
+   1600
+  ],
+  "ancho": 1600,
+  "alto": 1025,
+  "origen": "fotos/airbnb/18.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "pesoz-burros",
+  "anchos": [
+   480,
+   800,
+   1024,
+   1280
+  ],
+  "ancho": 1280,
+  "alto": 1280,
+  "origen": "fotos/airbnb/17.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "atardecer",
+  "anchos": [
+   480,
+   800,
+   1024,
+   1280
+  ],
+  "ancho": 1280,
+  "alto": 853,
+  "origen": "fotos/airbnb/23.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "valle",
+  "anchos": [
+   480,
+   800,
+   1024,
+   1280,
+   1600
+  ],
+  "ancho": 1600,
+  "alto": 1200,
+  "origen": "fotos/airbnb/20.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "paicega",
+  "anchos": [
+   480,
+   800,
+   1024,
+   1280
+  ],
+  "ancho": 1280,
+  "alto": 1728,
+  "origen": "fotos/airbnb/19.jpg",
+  "recorte": null
+ },
+ {
+  "nombre": "embalse",
+  "anchos": [
+   480,
+   800,
+   1024,
+   1280,
+   1600
+  ],
+  "ancho": 1600,
+  "alto": 1200,
+  "origen": "fotos/airbnb/24.jpg",
+  "recorte": null
+ }
+]

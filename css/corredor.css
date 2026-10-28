@@ -1,0 +1,119 @@
+/* A Palleira · El corredor y sus panoyas. Todo bajo [data-modulo="corredor"] .corr. Tokens de :root con respaldo. */
+[data-modulo="corredor"] .corr {
+  --c-naranja: var(--naranja, #F67B02);
+  --c-teja: var(--teja, #CC4A00);
+  --c-marron: var(--marron, #3B1C0A);
+  --c-crema: var(--crema, #F6EBD3);
+  --c-paja: var(--paja, #D8B25A);
+  --c-pizarra: var(--pizarra, #2E3236);
+  --c-tinta: var(--tinta, #24160C);
+  --c-titulo: var(--fuente-titulo, 'Chonburi', Georgia, serif);
+  --c-texto: var(--fuente-texto, 'Host Grotesk', system-ui, sans-serif);
+  --c-mono: var(--fuente-cifras, 'Martian Mono', ui-monospace, monospace);
+  --c-zocalo: #4c5154;
+  font-family: var(--c-texto);
+  color: var(--c-tinta);
+  position: relative;
+}
+[data-modulo="corredor"] .corr *, [data-modulo="corredor"] .corr *::before, [data-modulo="corredor"] .corr *::after { box-sizing: border-box; }
+[data-modulo="corredor"] .corr-intro {
+  max-width: 46rem; margin: 0 auto; padding: 0 16px 1.4rem;
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.18rem); line-height: 1.5;
+}
+[data-modulo="corredor"] .corr-intro strong { font-weight: 600; box-shadow: inset 0 -0.32em 0 color-mix(in srgb, var(--c-paja) 70%, transparent); }
+
+/* ---------- escena ---------- */
+[data-modulo="corredor"] .corr-pista { position: relative; }
+[data-modulo="corredor"] .corr-escenario { position: relative; background: var(--c-zocalo); display: flex; flex-direction: column; }
+[data-modulo="corredor"] .corr-vista { position: relative; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; background: #2a1d14; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; }
+[data-modulo="corredor"] .corr-vista::-webkit-scrollbar { display: none; }
+[data-modulo="corredor"] .corr-escena { position: relative; will-change: transform; }
+[data-modulo="corredor"] .corr-base { display: block; width: 100%; height: 100%; user-select: none; -webkit-user-drag: none; pointer-events: none; }
+[data-modulo="corredor"] .corr-capa { position: absolute; left: 0; top: 0; will-change: transform; }
+[data-modulo="corredor"] .corr-lienzo { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+
+/* cada ristra es un botón con el tamaño de su ristra */
+[data-modulo="corredor"] .corr-ristra {
+  position: absolute; margin: 0; padding: 0; border: 0; background: transparent; cursor: pointer;
+  font: inherit; color: inherit; touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+  pointer-events: none; min-width: 48px;
+}
+[data-modulo="corredor"] .corr-ristra.visible { pointer-events: auto; }
+[data-modulo="corredor"] .corr-ristra:focus { outline: none; }
+[data-modulo="corredor"] .corr-ristra:focus-visible { outline: 2px solid var(--c-marron); outline-offset: 4px; border-radius: 10px; box-shadow: 0 0 0 5px color-mix(in srgb, var(--c-crema) 88%, transparent); }
+/* la muesca naranja del foco */
+[data-modulo="corredor"] .corr-ristra:focus-visible::before { content: ''; position: absolute; left: -9px; top: -9px; width: 12px; height: 12px; background: var(--c-naranja); border: 2px solid var(--c-marron); border-radius: 3px; }
+[data-modulo="corredor"] .corr-ristra-nombre {
+  position: absolute; left: 50%; top: 100%; transform: translate(-50%, 6px); white-space: nowrap;
+  font: 600 0.78rem/1 var(--c-texto); letter-spacing: 0.01em; padding: 0.5em 0.85em; border-radius: 999px;
+  background: var(--c-crema); color: var(--c-marron); box-shadow: 0 2px 0 var(--c-teja), 0 6px 14px rgb(0 0 0 / 0.28);
+  opacity: 0; transition: opacity 0.4s ease, background-color 0.2s ease; pointer-events: none;
+}
+[data-modulo="corredor"] .corr-ristra.visible .corr-ristra-nombre { opacity: 1; }
+[data-modulo="corredor"] .corr-ristra:hover .corr-ristra-nombre, [data-modulo="corredor"] .corr-ristra.activa .corr-ristra-nombre { background: var(--c-naranja); }
+
+/* ---------- el zócalo de pizarra: lo que tiene la casa ---------- */
+[data-modulo="corredor"] .corr-zocalo {
+  position: relative; padding: 1.1rem 16px 1.5rem; color: var(--c-crema); text-align: center;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 calc(11vw - 5px), rgb(120 76 36 / 0.85) calc(11vw - 5px) 11vw),
+    linear-gradient(to bottom, var(--c-zocalo), var(--c-pizarra));
+}
+[data-modulo="corredor"] .corr-zocalo-t { margin: 0 0 0.7rem; font: 600 0.72rem/1 var(--c-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--c-paja); }
+[data-modulo="corredor"] .corr-lista { list-style: none; margin: 0 auto; padding: 0; max-width: 62rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.45rem 1.5rem; }
+[data-modulo="corredor"] .corr-lista li { font-size: clamp(0.94rem, 0.9rem + 0.2vw, 1.05rem); display: inline-flex; align-items: center; gap: 0.55em; }
+/* la espiga: un trazo corto de paja */
+[data-modulo="corredor"] .corr-lista li::before { content: ''; width: 0.7em; height: 0.22em; border-radius: 1em; background: var(--c-paja); transform: rotate(-32deg); flex: none; }
+
+/* ---------- fichas ---------- */
+[data-modulo="corredor"] .corr-ficha {
+  background: var(--c-crema); color: var(--c-tinta); border-radius: 14px; overflow: hidden;
+  box-shadow: 0 0 0 2px var(--c-marron), 0 8px 0 var(--c-teja), 0 22px 40px rgb(0 0 0 / 0.35);
+}
+[data-modulo="corredor"] .corr-ficha[hidden] { display: none; }
+[data-modulo="corredor"] .corr-ficha-fotos { display: grid; gap: 2px; background: var(--c-marron); }
+[data-modulo="corredor"] .corr-fotos-2 { grid-template-columns: 1fr 1fr; }
+[data-modulo="corredor"] .corr-ficha-fotos picture, [data-modulo="corredor"] .corr-ficha-fotos img { display: block; width: 100%; }
+[data-modulo="corredor"] .corr-ficha-fotos img { aspect-ratio: 4 / 3; object-fit: cover; height: auto; background: var(--c-pizarra); }
+[data-modulo="corredor"] .corr-ficha-cuerpo { padding: 1rem 1.2rem 1.25rem; }
+[data-modulo="corredor"] .corr-ficha-t { margin: 0 0 0.4rem; font: 400 clamp(1.35rem, 1.2rem + 0.6vw, 1.8rem)/1.15 var(--c-titulo); color: var(--c-marron); }
+[data-modulo="corredor"] .corr-ficha-t:focus { outline: none; }
+[data-modulo="corredor"] .corr-ficha-t:focus-visible { outline: 2px solid var(--c-marron); outline-offset: 4px; }
+[data-modulo="corredor"] .corr-ficha p { margin: 0 0 0.9rem; font-size: 1rem; line-height: 1.5; }
+[data-modulo="corredor"] .corr-ficha-reservar {
+  display: inline-block; padding: 0.7em 1.2em; border-radius: 999px; background: var(--c-naranja); color: var(--c-marron);
+  font-weight: 600; text-decoration: none; box-shadow: 0 3px 0 var(--c-teja); min-height: 44px; line-height: 1.5;
+}
+[data-modulo="corredor"] .corr-ficha-reservar:hover { background: var(--c-paja); }
+[data-modulo="corredor"] .corr-ficha-reservar:focus-visible, [data-modulo="corredor"] .corr-cerrar:focus-visible { outline: 2px solid var(--c-marron); outline-offset: 3px; }
+[data-modulo="corredor"] .corr-cerrar {
+  position: absolute; right: 10px; top: 10px; z-index: 2; border: 0; cursor: pointer; font: 600 0.8rem/1 var(--c-texto);
+  padding: 0.7em 1em; min-height: 40px; border-radius: 999px; background: var(--c-crema); color: var(--c-marron); box-shadow: 0 0 0 2px var(--c-marron);
+}
+[data-modulo="corredor"] .corr-ficha:not(.corr-ficha--fija) { position: relative; margin: 1.2rem 16px 1.2rem; max-width: 34rem; }
+
+/* ---------- escritorio: la sección se fija y el corredor se recorre de lado ---------- */
+[data-modulo="corredor"] .corr--escritorio .corr-escenario { position: sticky; top: 0; overflow: hidden; }
+[data-modulo="corredor"] .corr--escritorio .corr-vista { flex: 1 1 auto; min-height: 0; overflow: hidden; }
+[data-modulo="corredor"] .corr--escritorio .corr-zocalo { flex: none; }
+[data-modulo="corredor"] .corr--escritorio .corr-ficha:not(.corr-ficha--fija) {
+  position: absolute; bottom: calc(var(--corr-zoc, 9rem) + 18px); width: min(25rem, 34vw); max-height: calc(100% - var(--corr-zoc, 9rem) - 90px); margin: 0; overflow: auto; z-index: 5;
+}
+[data-modulo="corredor"] .corr--escritorio .corr-ficha.a-la-derecha { right: clamp(16px, 3vw, 48px); }
+[data-modulo="corredor"] .corr--escritorio .corr-ficha.a-la-izquierda { left: clamp(16px, 3vw, 48px); }
+
+/* ---------- en flujo (móvil y tablet): la escena a lo ancho y las fichas debajo ---------- */
+[data-modulo="corredor"] .corr--flujo .corr-vista { scroll-snap-type: x proximity; }
+[data-modulo="corredor"] .corr-pista-aviso { display: none; }
+[data-modulo="corredor"] .corr--viva.corr--flujo .corr-zocalo-t::after { content: ' · desliza el corredor'; color: var(--c-crema); opacity: 0.8; }
+[data-modulo="corredor"] .corr--flujo .corr-ristra { min-width: 44px; }
+
+/* ---------- quieta (movimiento reducido o sobria): la escena entera y las fichas en rejilla ---------- */
+[data-modulo="corredor"] .corr--quieta .corr-vista { overflow: hidden; }
+[data-modulo="corredor"] .corr-rejilla { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr)); gap: 1.1rem; padding: 1.4rem 16px 0; max-width: 78rem; margin: 0 auto; }
+[data-modulo="corredor"] .corr-ficha--fija { display: flex; flex-direction: column; }
+[data-modulo="corredor"] .corr-ficha--fija .corr-ficha-cuerpo { flex: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-modulo="corredor"] .corr-ristra-nombre { transition: none; }
+}

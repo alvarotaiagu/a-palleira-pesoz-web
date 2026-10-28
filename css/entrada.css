@@ -1,0 +1,99 @@
+/* ------------------------------------------------------------------
+   A Palleira · Entrada (agente Entrada):
+     1. la cortina «el monograma»     (#cortina, partes/cortina.html, js/cortina.js)
+     2. la pizarra del cierre         ([data-modulo="pizarra"], js/pizarra.js)
+   Colores y letras de la web con var(--x, valor) por si estilos.css aún no está.
+   ------------------------------------------------------------------ */
+
+/* ================= 1. cortina «el monograma» =================
+   Solo se ve con html.cortina-activa (lo pone el script de la parte): sin JS no aparece nunca.
+   Estructura: .cortina (sin fondo: debajo está la portada)
+     > .cortina__luz       el resplandor que se cuela por la rendija
+     > .cortina__puertas   (perspectiva leve) > .cortina__hoja--i / --d   (rotateY, bisagra en el borde exterior)
+     > .cortina__marca     la caja del logo con el rótulo y, encima, el monograma A + P */
+#cortina.cortina {
+  position: fixed; inset: 0; z-index: 1000; display: none;
+  width: 100%; height: 100%; overflow: hidden;
+  contain: strict;
+}
+html.cortina-activa #cortina.cortina { display: block !important; }
+#cortina.cortina[hidden], html.cortina-fuera #cortina.cortina { display: none !important; }
+@media (prefers-reduced-motion: reduce) { #cortina.cortina { display: none !important; } }
+html.cortina-activa, html.cortina-activa body { overflow: hidden; }
+
+/* la marca de la cabecera no se ve hasta que el monograma de la cortina aterriza sobre ella */
+html.cortina-activa:not(.cortina-aterriza) [data-cortina-destino] { visibility: hidden; }
+
+#cortina .cortina__luz {
+  position: absolute; inset: 0; z-index: 0; opacity: 0; pointer-events: none;
+  background: radial-gradient(ellipse 46% 80% at 50% 52%, rgba(255, 214, 140, .95) 0%, rgba(255, 170, 70, .55) 34%, rgba(246, 123, 2, 0) 72%);
+}
+#cortina .cortina__puertas { position: absolute; inset: 0; z-index: 1; perspective: 2400px; perspective-origin: 50% 50%; }
+#cortina .cortina__hoja {
+  position: absolute; top: 0; bottom: 0; width: calc(50% + 1px);
+  background: #5F3418;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  will-change: transform; overflow: hidden;
+}
+#cortina .cortina__hoja--i { left: 0; transform-origin: 0 50%; }
+#cortina .cortina__hoja--d { right: 0; transform-origin: 100% 50%; }
+#cortina .cortina__tablas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+/* viñeta: la hoja se oscurece hacia el borde de fuera, y un reflejo suave en el canto del centro */
+#cortina .cortina__hoja::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  background: radial-gradient(ellipse 120% 90% at 100% 50%, rgba(0, 0, 0, 0) 38%, rgba(10, 4, 1, .62) 100%);
+}
+#cortina .cortina__hoja--d::before { background: radial-gradient(ellipse 120% 90% at 0% 50%, rgba(0, 0, 0, 0) 38%, rgba(10, 4, 1, .62) 100%); }
+#cortina .cortina__sombra { position: absolute; inset: 0; z-index: 2; background: #0B0502; opacity: 0; pointer-events: none; }
+
+/* la caja del logo y su rótulo; el monograma (A + P) va en su propio SVG encima, para poder volar */
+#cortina .cortina__marca {
+  position: absolute; z-index: 2; left: 50%; top: 50%;
+  width: min(clamp(286px, 88vw, 700px), calc(70vh * 2.578));
+  transform: translate(-50%, -50%); opacity: 0;
+}
+#cortina .cortina__caja { position: absolute; inset: 0; width: 100%; height: 100%; display: block; overflow: visible; }
+#cortina .cortina__mono { position: absolute; display: block; overflow: visible; transform-origin: 50% 50%; will-change: transform, opacity; }
+#cortina .cortina__letra { fill: var(--marron, #3B1C0A); opacity: 0; }
+#cortina .cortina__trazo { stroke-dasharray: 1 1; stroke-dashoffset: 1; opacity: 0; }
+#cortina #cp-p { opacity: 0; }
+
+/* ================= 2. pizarra del cierre =================
+   [data-modulo="pizarra"] > .pizarra > .pizarra__tablero (fondo + grano + frase) y .pizarra__cola (pie y botón).
+   El respaldo que escribió la web (foto + frase) queda dentro, en .pizarra__respaldo[hidden]. */
+[data-modulo="pizarra"] .pizarra { display: flex; flex-direction: column; align-items: center; gap: clamp(1.1rem, 3vw, 1.8rem); width: 100%; }
+[data-modulo="pizarra"] .pizarra__respaldo[hidden] { display: none !important; }
+[data-modulo="pizarra"] .pizarra__tablero {
+  position: relative; width: min(100%, 1040px); margin-inline: auto; overflow: hidden; isolation: isolate;
+  background: var(--pizarra, #2E3236);
+  border-radius: 14px 22px 12px 26px / 22px 12px 26px 14px;                     /* el canto de una pizarra de tejado: nada de rectángulo perfecto */
+  box-shadow: inset 0 0 0 2px rgba(0, 0, 0, .35), inset 0 0 90px rgba(0, 0, 0, .5), 0 22px 40px -18px rgba(0, 0, 0, .55);
+  contain: layout paint;
+}
+[data-modulo="pizarra"] .pizarra__fondo { position: absolute; inset: 0; width: 100%; height: 100%; display: block; z-index: 0; will-change: transform; }
+/* el grano de la propia pizarra: la misma máscara de la tiza, en crema muy tenue */
+[data-modulo="pizarra"] .pizarra__grano {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none; background: #F1EAD8; opacity: .07;
+  -webkit-mask-image: url(../img/entrada/tiza-grano.webp); mask-image: url(../img/entrada/tiza-grano.webp);
+  -webkit-mask-size: 180px 180px; mask-size: 180px 180px;
+}
+/* la tiza: crema, en su propia capa (es lo único que se anima). Los huecos de la tiza seca no van como máscara de esta capa
+   (se repintaría con ella en cada fotograma): van encima, en una capa estática del color de la pizarra */
+[data-modulo="pizarra"] .pizarra__frase { position: relative; z-index: 2; display: block; width: 100%; height: auto; will-change: transform; }
+[data-modulo="pizarra"] .pizarra__huecos {
+  position: absolute; inset: 0; z-index: 3; pointer-events: none; background: var(--pizarra, #2E3236); will-change: transform;
+  -webkit-mask-image: url(../img/entrada/tiza-huecos.webp); mask-image: url(../img/entrada/tiza-huecos.webp);
+  -webkit-mask-size: 200px 200px; mask-size: 200px 200px;
+}
+[data-modulo="pizarra"] .pizarra__trazos { stroke: var(--tiza, #F1EAD8); }
+[data-modulo="pizarra"] .pizarra__cola { display: flex; flex-direction: column; align-items: center; gap: 1rem; text-align: center; padding-inline: 16px; }
+[data-modulo="pizarra"] .pizarra__pie { margin: 0; font-size: clamp(.95rem, 2.4vw, 1.1rem); line-height: 1.4; opacity: .92; }
+[data-modulo="pizarra"] .pizarra__boton {
+  display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 28px; border-radius: 999px;
+  background: var(--naranja, #F67B02); color: var(--marron, #3B1C0A); font-weight: 600; font-size: 1rem; letter-spacing: .01em; text-decoration: none;
+  transition: background-color .2s ease, transform .2s ease;
+}
+[data-modulo="pizarra"] .pizarra__boton:hover { background: color-mix(in srgb, var(--naranja, #F67B02) 86%, #fff); transform: translateY(-1px); }
+/* foco con forma propia: un contorno marrón de 2 px y, fuera, un aro crema (se ve sobre pizarra, sobre naranja y sobre crema) */
+[data-modulo="pizarra"] .pizarra__boton:focus-visible { outline: 2px solid var(--marron, #3B1C0A); outline-offset: 2px; box-shadow: 0 0 0 5px var(--crema, #F6EBD3); }
+@media (prefers-reduced-motion: reduce) { [data-modulo="pizarra"] .pizarra__boton { transition: none; } }

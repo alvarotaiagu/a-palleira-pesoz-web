@@ -1,0 +1,7 @@
+# solo en local: material de origen (fotos de Airbnb, descargas), pruebas y notas internas
+ref/
+pruebas/
+node_modules/
+PENDIENTES.md
+ENCARGO.md
+scripts/fuentes/
