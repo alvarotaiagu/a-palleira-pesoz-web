@@ -18,11 +18,12 @@
   /* x0, x1, y0, y1 de cada ristra y sus 4 tiras [sx, sy, w, h, jx, jy, ox, oy] (ver panoyas.json) */
   /*GEO*/
   var GEO = [
-    { x0: 368, x1: 466, y0: 239, y1: 450, s: [[0, 0, 98, 56, 58, 0, 368, 239], [100, 0, 98, 59, 57, 3, 368, 289], [200, 0, 98, 58, 41, 3, 368, 342], [300, 0, 98, 56, 37, 3, 368, 394]] },
-    { x0: 713, x1: 803, y0: 237, y1: 395, s: [[0, 61, 90, 43, 48, 0, 713, 237], [92, 61, 90, 45, 44, 3, 713, 274], [184, 61, 90, 45, 44, 3, 713, 313], [276, 61, 90, 43, 42, 3, 713, 352]] },
-    { x0: 1096, x1: 1187, y0: 230, y1: 401, s: [[0, 108, 91, 46, 36, 0, 1096, 230], [93, 108, 91, 49, 41, 3, 1096, 270], [186, 108, 91, 48, 40, 3, 1096, 313], [279, 108, 91, 46, 39, 3, 1096, 355]] },
-    { x0: 1429, x1: 1528, y0: 220, y1: 471, s: [[0, 159, 99, 66, 40, 0, 1429, 220], [101, 159, 99, 69, 46, 3, 1429, 280], [202, 159, 99, 68, 49, 3, 1429, 343], [303, 159, 99, 66, 50, 3, 1429, 405]] }
+    { x0: 374, x1: 463, y0: 240, y1: 459, s: [[0.0, 0.0, 89.04, 57.05, 57.92, 0.0, 374.31, 240.32], [92.5, 0.0, 89.04, 59.65, 50.78, 2.59, 374.31, 292.19], [184.99, 0.0, 89.04, 60.51, 41.38, 2.59, 374.31, 346.65], [277.49, 0.0, 89.04, 57.05, 36.62, 2.59, 374.31, 401.97]] },
+    { x0: 718, x1: 800, y0: 249, y1: 397, s: [[0.0, 63.97, 82.12, 39.77, 60.08, 0.0, 717.5, 248.97], [85.58, 63.97, 82.12, 42.36, 43.77, 2.59, 717.5, 283.54], [171.16, 63.97, 82.12, 41.49, 38.9, 2.59, 717.5, 320.72], [256.75, 63.97, 82.12, 39.77, 40.09, 2.59, 717.5, 357.02]] },
+    { x0: 1095, x1: 1175, y0: 231, y1: 404, s: [[0.0, 109.79, 79.53, 45.82, 30.83, 0.0, 1095.27, 230.81], [82.99, 109.79, 79.53, 48.41, 35.79, 2.59, 1095.27, 271.44], [165.98, 109.79, 79.53, 48.41, 36.41, 2.59, 1095.27, 314.66], [248.97, 109.79, 79.53, 45.82, 41.28, 2.59, 1095.27, 357.89]] },
+    { x0: 1426, x1: 1521, y0: 202, y1: 459, s: [[0.0, 161.65, 95.96, 66.56, 36.07, 0.0, 1425.5, 202.28], [99.41, 161.65, 95.96, 69.16, 38.05, 2.59, 1425.5, 263.66], [198.83, 161.65, 95.96, 70.02, 44.19, 2.59, 1425.5, 327.63], [298.24, 161.65, 95.96, 66.56, 53.41, 2.59, 1425.5, 392.47]] }
   ];
+  var ATLAS_K = 1.1568;   // píxeles del atlas por unidad de escena
   /*FIN*/
 
   /* Las fichas: solo lo que dicen los datos de la casa (ref/DATOS-A-PALLEIRA.md) */
@@ -166,8 +167,8 @@
     /* atlas de las ristras */
     var atlas = new Image(), atlasListo = false;
     atlas.onload = function () { atlasListo = true; pintar(true); };
-    atlas.onerror = function () { if (!atlas.dataset.png) { atlas.dataset.png = '1'; atlas.src = o.base + 'img/corredor/panoyas.png'; } };
-    atlas.src = o.base + 'img/corredor/panoyas.webp';
+    atlas.onerror = function () { if (!atlas.dataset.png) { atlas.dataset.png = '1'; atlas.src = o.base + 'img/corredor/panoyas.png?v=ia1'; } };
+    atlas.src = o.base + 'img/corredor/panoyas.webp?v=ia1';
 
     var ristras = GEO.map(crearRistra);
     for (i = 0; i < botones.length; i++) ristras[i].boton = botones[i];
@@ -187,7 +188,7 @@
         estadio.style.height = innerHeight + 'px';
         vw = cw;
         var alto = vista.clientHeight;
-        k = Math.min(alto / ALTO, 1.1); // tope: la foto de origen es pequeña y ampliada se ve blanda
+        k = Math.min(alto / ALTO, 1.16); // tope: la base y el atlas están a 1,157× la escena; más, se ablandan
         esceneW = Math.round(ANCHO * k);
         escena.style.width = esceneW + 'px'; escena.style.height = Math.round(ALTO * k) + 'px';
         vista.style.overflow = 'hidden';
@@ -230,7 +231,7 @@
         for (var j = 0; j < NSEG; j++) {
           var s = r.g.s[j], c = Math.cos(r.phi[j]), sn = Math.sin(r.phi[j]);
           ctx.setTransform(sx * c, sx * sn, -sx * sn, sx * c, sx * px, sx * py);
-          ctx.drawImage(atlas, s[0], s[1], s[2], s[3], -s[4], -s[5], s[2], s[3]);
+          ctx.drawImage(atlas, s[0] * ATLAS_K, s[1] * ATLAS_K, s[2] * ATLAS_K, s[3] * ATLAS_K, -s[4], -s[5], s[2], s[3]);
           if (j < NSEG - 1) {
             var dx = r.juntas[j + 1].x - r.juntas[j].x, dy = r.juntas[j + 1].y - r.juntas[j].y;
             px += c * dx - sn * dy; py += sn * dx + c * dy;
