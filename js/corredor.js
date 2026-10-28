@@ -376,7 +376,9 @@
       on(b, 'click', function () { abrir(idx); });
       on(b, 'focus', function () {
         r.forzada = true;
-        if (escritorio) centrar(idx);
+        /* solo con el teclado: con el ratón o el dedo, el foco llega al pulsar y centrar movía la página */
+        var teclado = false; try { teclado = b.matches(':focus-visible'); } catch (e) { /* nada */ }
+        if (escritorio && teclado) centrar(idx);
         despertar();
       });
     }
@@ -412,7 +414,7 @@
       }
       raiz.classList.add('corr--con-ficha');
       var t = panel.querySelector('.corr-ficha-t');
-      try { t.focus({ preventScroll: !escritorio ? false : true }); } catch (e) { /* nada */ }
+      try { t.focus({ preventScroll: true }); } catch (e) { /* nada */ }   // sin saltos: en móvil ya se acerca la ficha abajo
       if (!escritorio) {
         var rr = panel.getBoundingClientRect();
         if (rr.top > innerHeight - 160 || rr.top < 0) panel.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
