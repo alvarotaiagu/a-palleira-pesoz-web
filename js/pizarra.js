@@ -140,7 +140,7 @@
       construido = raiz;
 
       // --- el horario: la velocidad se reparte para que la frase entera lleve ~6 s (los 75 trazos: unos 80 ms cada uno)
-      var gap = 22, gapLinea = 220, durMin = 50, objetivo = 6000;
+      var gap = 14, gapLinea = 140, durMin = 35, objetivo = 3200;
       var v = 2200;
       for (var it = 0; it < 12; it++) {
         var tot = 0;
@@ -240,7 +240,7 @@
       if ('IntersectionObserver' in w) {
         io = new w.IntersectionObserver(function (es) {
           if (es.some(function (e) { return e.isIntersecting; })) { io.disconnect(); io = null; escribir(); }
-        }, { threshold: .35 });
+        }, { threshold: .2 });
         io.observe(tablero);
       } else escribir();
     }

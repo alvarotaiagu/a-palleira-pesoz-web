@@ -45,7 +45,7 @@
 [data-modulo="corredor"] .corr-ristra:focus-visible::before { content: ''; position: absolute; left: -9px; top: -9px; width: 12px; height: 12px; background: var(--c-naranja); border: 2px solid var(--c-marron); border-radius: 3px; }
 [data-modulo="corredor"] .corr-ristra-nombre {
   position: absolute; left: 50%; top: 100%; transform: translate(-50%, 6px); white-space: nowrap;
-  font: 600 0.78rem/1 var(--c-texto); letter-spacing: 0.01em; padding: 0.5em 0.85em; border-radius: 999px;
+  font: 600 0.92rem/1 var(--c-texto); letter-spacing: 0.01em; padding: 0.55em 0.95em; border-radius: 999px;
   background: var(--c-crema); color: var(--c-marron); box-shadow: 0 2px 0 var(--c-teja), 0 6px 14px rgb(0 0 0 / 0.28);
   opacity: 0; transition: opacity 0.4s ease, background-color 0.2s ease; pointer-events: none;
 }
@@ -55,11 +55,10 @@
 /* ---------- el zócalo de pizarra: lo que tiene la casa ---------- */
 [data-modulo="corredor"] .corr-zocalo {
   position: relative; padding: 1.1rem 16px 1.5rem; color: var(--c-crema); text-align: center;
-  background:
-    repeating-linear-gradient(90deg, transparent 0 calc(11vw - 5px), rgb(120 76 36 / 0.85) calc(11vw - 5px) 11vw),
-    linear-gradient(to bottom, var(--c-zocalo), var(--c-pizarra));
+  background: linear-gradient(to bottom, var(--c-zocalo), var(--c-pizarra));
+  border-top: 3px solid rgb(120 76 36 / 0.9);
 }
-[data-modulo="corredor"] .corr-zocalo-t { margin: 0 0 0.7rem; font: 600 0.72rem/1 var(--c-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--c-paja); }
+[data-modulo="corredor"] .corr-zocalo-t { margin: 0 0 0.7rem; font: 600 0.72rem/1.6 var(--c-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--c-paja); }
 [data-modulo="corredor"] .corr-lista { list-style: none; margin: 0 auto; padding: 0; max-width: 62rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.45rem 1.5rem; }
 [data-modulo="corredor"] .corr-lista li { font-size: clamp(0.94rem, 0.9rem + 0.2vw, 1.05rem); display: inline-flex; align-items: center; gap: 0.55em; }
 /* la espiga: un trazo corto de paja */
@@ -94,7 +93,8 @@
 
 /* ---------- escritorio: la sección se fija y el corredor se recorre de lado ---------- */
 [data-modulo="corredor"] .corr--escritorio .corr-escenario { position: sticky; top: 0; overflow: hidden; }
-[data-modulo="corredor"] .corr--escritorio .corr-vista { flex: 1 1 auto; min-height: 0; overflow: hidden; }
+[data-modulo="corredor"] .corr--escritorio .corr-vista { flex: 1 1 auto; min-height: 0; overflow: hidden; display: flex; align-items: center; }
+[data-modulo="corredor"] .corr--escritorio .corr-escena { flex: none; }
 [data-modulo="corredor"] .corr--escritorio .corr-zocalo { flex: none; }
 [data-modulo="corredor"] .corr--escritorio .corr-ficha:not(.corr-ficha--fija) {
   position: absolute; bottom: calc(var(--corr-zoc, 9rem) + 18px); width: min(25rem, 34vw); max-height: calc(100% - var(--corr-zoc, 9rem) - 90px); margin: 0; overflow: auto; z-index: 5;

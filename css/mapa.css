@@ -40,9 +40,9 @@
 .vc-v--on .vc-v-anillo { opacity: .75; }
 
 /* con movimiento: se traza el plano y se encienden los puntos */
-.vc--mov .vc-limite, .vc--mov .vc-rio, .vc--mov .vc-via { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 2.6s cubic-bezier(.87, 0, .13, 1) var(--t, 0ms); }
+.vc--mov .vc-limite, .vc--mov .vc-rio, .vc--mov .vc-via { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.5s cubic-bezier(.65, 0, .35, 1) var(--t, 0ms); }
 .vc--mov.vc--visto .vc-limite, .vc--mov.vc--visto .vc-rio, .vc--mov.vc--visto .vc-via { stroke-dashoffset: 0; }
-.vc--mov .vc-agua, .vc--mov .vc-nucleos, .vc--mov .vc-casa { opacity: 0; transition: opacity 1s ease 1.2s; }
+.vc--mov .vc-agua, .vc--mov .vc-nucleos, .vc--mov .vc-casa { opacity: 0; transition: opacity .8s ease .6s; }
 .vc--mov.vc--visto .vc-agua, .vc--mov.vc--visto .vc-nucleos, .vc--mov.vc--visto .vc-casa { opacity: 1; }
 .vc--mov .vc-pt { opacity: 0; transition: opacity .9s ease var(--d, 1500ms); }
 .vc--mov.vc--visto .vc-pt { opacity: 1; }

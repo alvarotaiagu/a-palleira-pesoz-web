@@ -28,8 +28,8 @@
   var CASA_CAJA = { x: 765, y: 318, w: 252, h: 104 };
   // Dónde puede ir el rótulo de cada ciudad: [x, y, ancla, tamaño]
   var ROTULOS = {
-    lugo: [196, 318, 'middle', 56], fonsagrada: [358, 215, 'middle', 44], garganta: [575, 262, 'start', 42], vegadeo: [440, 100, 'middle', 44], navia: [940, 190, 'middle', 52],
-    oviedo: [1300, 445, 'middle', 56], pola: [980, 590, 'middle', 44], madrid: [800, 738, 'start', 56], grandas: [540, 470, 'middle', 44], pesoz: [630, 330, 'end', 52]
+    lugo: [196, 318, 'middle', 56], fonsagrada: [300, 194, 'middle', 40], garganta: [566, 214, 'start', 30], vegadeo: [628, 126, 'start', 44], navia: [940, 190, 'middle', 52],
+    oviedo: [1300, 445, 'middle', 56], pola: [980, 590, 'middle', 44], madrid: [800, 738, 'start', 56], grandas: [540, 470, 'middle', 44], pesoz: [640, 350, 'end', 48]
   };
   var NEAR = ['oviedo', 'lugo', 'madrid', 'navia', 'vegadeo', 'fonsagrada', 'pola-allande', 'grandas'];
   var NODO_DE = { 'pola-allande': 'pola' };
@@ -116,6 +116,8 @@
       var r = ROTULOS[id], t = S('text', { x: r[0], y: r[1], 'text-anchor': r[2], 'class': 'mp-ciudad', 'font-size': r[3] }, gNodos);
       t.textContent = id === 'grandas' ? 'Grandas' : NODOS[id][3];
     });
+    // A Fonsagrada no cabe junto a su nudo: el rótulo va arriba con una guía, como en la tarjeta original
+    S('path', { d: 'M318 206 L386 362', fill: 'none', stroke: '#3B1C0A', 'stroke-width': 3, 'stroke-linecap': 'round', 'stroke-dasharray': '2 9' }, gNodos);
     // la casa: caja teja con el monograma, como en la tarjeta
     var c = CASA_CAJA, gc = S('g', { 'class': 'mp-casa' }, s);
     S('path', { d: 'M' + (c.x - 4) + ' ' + (c.y + 36) + 'L' + (c.x - 62) + ' ' + (c.y + 36), 'class': 'mp-casa-flecha' }, gc);

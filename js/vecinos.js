@@ -117,12 +117,12 @@
 
     // puntos de los vecinos
     var gPts = svg('g', { 'class': 'vc-puntos' }, s);
-    var pts = repartir(N, plano.pesoz.x, plano.pesoz.y, 50, plano.casa);
+    var pts = repartir(N, plano.pesoz.x, plano.pesoz.y, 92, plano.casa);
     var ptsEls = pts.map(function (p, i) {
       var g = svg('g', { 'class': 'vc-pt', transform: 'translate(' + p[0].toFixed(1) + ' ' + p[1].toFixed(1) + ')' }, gPts);
       svg('circle', { r: 8, fill: 'url(#vc-halo)', 'class': 'vc-pt-halo' }, g);
       svg('circle', { r: 2.9, 'class': 'vc-pt-nucleo' }, g);
-      g.style.setProperty('--d', Math.round(1500 + (i / N) * 1900 + (i * 37 % 120)) + 'ms');
+      g.style.setProperty('--d', Math.round(700 + (i / N) * 1100 + (i * 37 % 120)) + 'ms');
       if (mov && i % 9 === 4) { g.classList.add('vc-pt--par'); g.style.setProperty('--par', (5 + (i % 5)) + 's'); g.style.setProperty('--pard', '-' + (i % 7) + 's'); }
       return g;
     });
@@ -190,7 +190,7 @@
     var visto = false, io = null;
     function mostrar() { if (visto) return; visto = true; raiz.classList.add('vc--visto'); }
     if (mov && 'IntersectionObserver' in window) {
-      io = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { mostrar(); io.disconnect(); } }, { threshold: 0.2 });
+      io = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { mostrar(); io.disconnect(); } }, { threshold: 0.08 });
       io.observe(fig);
     } else mostrar();
     // pasos del trazo: los largos tardan más

@@ -190,7 +190,7 @@
         estadio.style.height = innerHeight + 'px';
         vw = cw;
         var alto = vista.clientHeight;
-        k = alto / ALTO;
+        k = Math.min(alto / ALTO, 1.1); // tope: la foto de origen es pequeña y ampliada se ve blanda
         esceneW = Math.round(ANCHO * k);
         escena.style.width = esceneW + 'px'; escena.style.height = Math.round(ALTO * k) + 'px';
         vista.style.overflow = 'hidden';
