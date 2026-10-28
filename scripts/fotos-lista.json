@@ -1,4 +1,5 @@
 [
+ {"nombre": "portada", "ruta": "fotos/airbnb/27.jpg", "tipo": "ext", "maxAncho": 1920, "nota": "foto 27: la portada «Desde el corredor» (nítida de verdad a 1920). Si cambia, relanzar python scripts/portada-marco.py"},
  {"nombre": "corredor", "ruta": "fotos/airbnb/09.jpg", "recorte": {"left": 30, "top": 26, "width": 1863, "height": 806}, "tipo": "ext", "maxAncho": 1100, "nota": "foto 09: la fachada del corredor con las 4 ristras de panoyas; recortado el marco naranja y la sombra pegados; pequeña de origen (~1000 px reales): nunca por encima de 1100"},
  {"nombre": "vista-corredor", "ruta": "fotos/airbnb/10.jpg", "tipo": "ext", "maxAncho": 1600, "nota": "foto 10: desde el corredor, tejados de Pesoz, el Palacio de Ron y el valle"},
  {"nombre": "vista-mesa", "ruta": "fotos/airbnb/27.jpg", "tipo": "ext", "maxAncho": 1600, "nota": "foto 27 (nueva): lo mismo con la mesa y el banco"},

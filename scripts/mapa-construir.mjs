@@ -1,4 +1,4 @@
-// Construye ref/raw/pesoz.json (INE + OSM) y mete los datos ya preparados en js/vecinos.js y js/mapa.js
+// Construye ref/raw/pesoz.json (INE + OSM) y mete los datos ya preparados en js/mapa.js (y en js/vecinos.js, si vuelve)
 // (entre /*DATOS:INICIO*/ y /*DATOS:FIN*/), para que los módulos no necesiten fetch y valgan también en file://.
 //   node scripts/mapa-construir.mjs             usa ref/raw/osm-pesoz-bruto.json y baja el INE
 //   node scripts/mapa-construir.mjs --sin-red   reutiliza la serie del INE ya guardada en ref/raw/pesoz.json
@@ -140,7 +140,7 @@ function inyecta(fichero, objeto) {
   s = s.replace(re, () => '/*DATOS:INICIO*/ ' + JSON.stringify(objeto) + ' /*DATOS:FIN*/');
   fs.writeFileSync(fichero, s);
 }
-inyecta('js/vecinos.js', { habitantes: N, anyo: ine.ultimo.anyo, fecha_referencia: ine.ultimo.fecha_referencia, empate: ine.concejos_menos_poblados_ultimo_anyo.filter((c) => c.valor === N && c.concejo !== 'Pesoz').map((c) => c.concejo), fuente: 'INE, Cifras oficiales de población (padrón a 1 de enero de ' + ine.ultimo.anyo + ')', plano });
+if (fs.existsSync('js/vecinos.js')) inyecta('js/vecinos.js', { habitantes: N, anyo: ine.ultimo.anyo, fecha_referencia: ine.ultimo.fecha_referencia, empate: ine.concejos_menos_poblados_ultimo_anyo.filter((c) => c.valor === N && c.concejo !== 'Pesoz').map((c) => c.concejo), fuente: 'INE, Cifras oficiales de población (padrón a 1 de enero de ' + ine.ultimo.anyo + ')', plano });
 inyecta('js/mapa.js', datosMapa);
 console.log('Pesoz', N, '(' + ine.ultimo.anyo + ')', 'plano', W + 'x' + H, 'principales', principales.length, 'locales', locales.length, 'etiquetas', etiquetas.length);
 console.log('empate con:', JSON.stringify(ine.concejos_menos_poblados_ultimo_anyo));

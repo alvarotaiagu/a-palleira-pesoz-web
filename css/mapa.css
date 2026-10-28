@@ -1,63 +1,5 @@
-/* «134 vecinos» ([data-modulo="vecinos"]) y «Su mapa, rehecho» ([data-modulo="mapa"]).
+/* «Su mapa, rehecho» ([data-modulo="mapa"]).
    Tokens de la web con respaldo: si css/estilos.css aún no existe, valen los valores de al lado. */
-
-/* ================= 134 vecinos (sobre el naranja) ================= */
-[data-modulo="vecinos"] { color: var(--marron, #3B1C0A); }
-[data-modulo="vecinos"] .vc { max-width: calc(var(--ancho, 1240px) + 2 * var(--lado, 24px)); margin: 0 auto; padding-inline: var(--lado, 24px); }
-[data-modulo="vecinos"] .vc-cuerpo { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.02fr); gap: clamp(24px, 5vw, 72px); align-items: center; }
-[data-modulo="vecinos"] .vc-sobre { font: 600 .78rem/1.3 var(--f-mono, ui-monospace, monospace); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 10px; }
-[data-modulo="vecinos"] .vc-num { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 .35em; margin-bottom: 14px; }
-[data-modulo="vecinos"] .vc-valor { font: 500 clamp(5.4rem, 16vw, 11.5rem)/.9 var(--f-mono, ui-monospace, monospace); letter-spacing: -.05em; font-variant-numeric: tabular-nums; min-width: 3ch; }
-[data-modulo="vecinos"] .vc-unidad { font: 400 clamp(1.5rem, 3vw, 2.2rem)/1 var(--f-tit, Georgia, serif); }
-[data-modulo="vecinos"] .vc-frase { font: 500 clamp(1.05rem, 1.5vw, 1.25rem)/1.45 var(--f-txt, system-ui, sans-serif); max-width: 32rem; text-wrap: balance; }
-[data-modulo="vecinos"] .vc-estado { margin-top: 18px; min-height: 3.2em; font: 600 1.02rem/1.45 var(--f-txt, system-ui, sans-serif); max-width: 32rem; padding: 12px 16px; border-left: 4px solid var(--marron, #3B1C0A); background: rgba(246, 235, 211, .28); }
-[data-modulo="vecinos"] .vc-enlace { color: inherit; text-decoration: underline; text-underline-offset: .2em; text-decoration-thickness: 2px; font-weight: 700; white-space: nowrap; }
-[data-modulo="vecinos"] .vc-enlace:hover { text-decoration-thickness: 3px; }
-[data-modulo="vecinos"] .vc-leyenda { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 18px; font: 500 .85rem/1.2 var(--f-txt, system-ui, sans-serif); list-style: none; padding: 0; }
-[data-modulo="vecinos"] .vc-ley::before { content: ""; display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 8px; vertical-align: -1px; box-sizing: border-box; }
-[data-modulo="vecinos"] .vc-ley--vecino::before { background: var(--crema, #F6EBD3); box-shadow: 0 0 0 3px rgba(246, 235, 211, .35); }
-[data-modulo="vecinos"] .vc-ley--viene::before { background: var(--marron, #3B1C0A); border: 2px solid var(--crema, #F6EBD3); }
-[data-modulo="vecinos"] .vc-fuente { margin-top: 16px; font: 400 .8rem/1.5 var(--f-txt, system-ui, sans-serif); max-width: 34rem; }
-
-[data-modulo="vecinos"] .vc-plano { margin: 0; justify-self: center; width: 100%; max-width: 560px; }
-[data-modulo="vecinos"] .vc-plano svg { display: block; width: 100%; height: auto; max-height: 88svh; overflow: visible; }
-.vc-limite { fill: none; stroke: var(--marron, #3B1C0A); stroke-width: 2.4; stroke-linejoin: round; stroke-linecap: round; }
-.vc-rio { fill: none; stroke: var(--marron, #3B1C0A); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; opacity: .8; }
-.vc-agua path { fill: rgba(59, 28, 10, .14); stroke: var(--marron, #3B1C0A); stroke-width: 1; opacity: .85; }
-.vc-via { fill: none; stroke: var(--marron, #3B1C0A); stroke-linecap: round; stroke-linejoin: round; }
-.vc-via--local { stroke-width: 1; opacity: .5; }
-.vc-via--principal { stroke-width: 2.6; }
-.vc-nucleos circle { fill: var(--marron, #3B1C0A); }
-.vc-et { font: 500 17px var(--f-txt, system-ui, sans-serif); fill: var(--marron, #3B1C0A); paint-order: stroke; stroke: var(--naranja, #F67B02); stroke-width: 4px; stroke-linejoin: round; }
-.vc-et--pesoz { font-size: 21px; font-weight: 700; }
-.vc-pt-nucleo { fill: var(--crema, #F6EBD3); }
-.vc-casa-hilo { fill: none; stroke: var(--marron, #3B1C0A); stroke-width: 1.4; }
-.vc-casa-et { font: 700 20px var(--f-txt, system-ui, sans-serif); fill: var(--marron, #3B1C0A); paint-order: stroke; stroke: var(--naranja, #F67B02); stroke-width: 5px; stroke-linejoin: round; }
-.vc-casa-pt { fill: var(--crema, #F6EBD3); stroke: var(--marron, #3B1C0A); stroke-width: 2.6; }
-.vc-v-pt { fill: var(--marron, #3B1C0A); stroke: var(--crema, #F6EBD3); stroke-width: 1.8; transform-box: fill-box; transform-origin: center; transform: scale(0); }
-.vc-v-anillo { fill: none; stroke: var(--marron, #3B1C0A); stroke-width: 1.4; opacity: 0; transform-box: fill-box; transform-origin: center; }
-.vc-v--on .vc-v-pt { transform: scale(1); }
-.vc-v--on .vc-v-anillo { opacity: .75; }
-
-/* con movimiento: se traza el plano y se encienden los puntos */
-.vc--mov .vc-limite, .vc--mov .vc-rio, .vc--mov .vc-via { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.5s cubic-bezier(.65, 0, .35, 1) var(--t, 0ms); }
-.vc--mov.vc--visto .vc-limite, .vc--mov.vc--visto .vc-rio, .vc--mov.vc--visto .vc-via { stroke-dashoffset: 0; }
-.vc--mov .vc-agua, .vc--mov .vc-nucleos, .vc--mov .vc-casa { opacity: 0; transition: opacity .8s ease .6s; }
-.vc--mov.vc--visto .vc-agua, .vc--mov.vc--visto .vc-nucleos, .vc--mov.vc--visto .vc-casa { opacity: 1; }
-.vc--mov .vc-pt { opacity: 0; transition: opacity .9s ease var(--d, 1500ms); }
-.vc--mov.vc--visto .vc-pt { opacity: 1; }
-.vc--mov.vc--visto .vc-pt--par { animation: vc-par var(--par, 6s) ease-in-out calc(var(--d, 1500ms) + 1s) infinite; }
-@keyframes vc-par { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
-.vc--mov .vc-v-pt { transition: transform .55s cubic-bezier(.16, 1, .3, 1) var(--vd, 0ms); }
-.vc--mov .vc-v-anillo { transition: opacity .5s ease var(--vd, 0ms); }
-.vc--mov .vc-v--on .vc-v-anillo { animation: vc-anillo 2.4s ease-out calc(var(--vd, 0ms) + .5s) infinite; }
-@keyframes vc-anillo { 0% { transform: scale(.6); opacity: .85; } 100% { transform: scale(1.7); opacity: 0; } }
-.vc--mov .vc-valor { transition: opacity .2s; }
-
-@media (max-width: 899px) {
-  [data-modulo="vecinos"] .vc-cuerpo { grid-template-columns: 1fr; }
-  [data-modulo="vecinos"] .vc-plano { max-width: 460px; }
-}
 
 /* ================= Su mapa, rehecho (sobre crema) ================= */
 [data-modulo="mapa"] { color: var(--tinta, #24160C); }
@@ -113,5 +55,5 @@
 
 @media (max-width: 899px) { [data-modulo="mapa"] .mp-cuerpo { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) {
-  .vc *, .mp * { animation: none !important; transition: none !important; }
+  .mp * { animation: none !important; transition: none !important; }
 }

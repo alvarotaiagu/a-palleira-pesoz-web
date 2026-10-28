@@ -52,17 +52,12 @@
 [data-modulo="corredor"] .corr-ristra.visible .corr-ristra-nombre { opacity: 1; }
 [data-modulo="corredor"] .corr-ristra:hover .corr-ristra-nombre, [data-modulo="corredor"] .corr-ristra.activa .corr-ristra-nombre { background: var(--c-naranja); }
 
-/* ---------- el zócalo de pizarra: lo que tiene la casa ---------- */
+/* ---------- el zócalo de pizarra: solo el suelo del corredor (lo que tiene la casa va en la ficha de la Web) ---------- */
 [data-modulo="corredor"] .corr-zocalo {
-  position: relative; padding: 1.1rem 16px 1.5rem; color: var(--c-crema); text-align: center;
+  position: relative; height: 14px;
   background: linear-gradient(to bottom, var(--c-zocalo), var(--c-pizarra));
   border-top: 3px solid rgb(120 76 36 / 0.9);
 }
-[data-modulo="corredor"] .corr-zocalo-t { margin: 0 0 0.7rem; font: 600 0.72rem/1.6 var(--c-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--c-paja); }
-[data-modulo="corredor"] .corr-lista { list-style: none; margin: 0 auto; padding: 0; max-width: 62rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.45rem 1.5rem; }
-[data-modulo="corredor"] .corr-lista li { font-size: clamp(0.94rem, 0.9rem + 0.2vw, 1.05rem); display: inline-flex; align-items: center; gap: 0.55em; }
-/* la espiga: un trazo corto de paja */
-[data-modulo="corredor"] .corr-lista li::before { content: ''; width: 0.7em; height: 0.22em; border-radius: 1em; background: var(--c-paja); transform: rotate(-32deg); flex: none; }
 
 /* ---------- fichas ---------- */
 [data-modulo="corredor"] .corr-ficha {
@@ -105,7 +100,7 @@
 /* ---------- en flujo (móvil y tablet): la escena a lo ancho y las fichas debajo ---------- */
 [data-modulo="corredor"] .corr--flujo .corr-vista { scroll-snap-type: x proximity; }
 [data-modulo="corredor"] .corr-pista-aviso { display: none; }
-[data-modulo="corredor"] .corr--viva.corr--flujo .corr-zocalo-t::after { content: ' · desliza el corredor'; color: var(--c-crema); opacity: 0.8; }
+[data-modulo="corredor"] .corr--viva.corr--flujo .corr-intro::after { content: ' Desliza el corredor de lado.'; }
 [data-modulo="corredor"] .corr--flujo .corr-ristra { min-width: 44px; }
 
 /* ---------- quieta (movimiento reducido o sobria): la escena entera y las fichas en rejilla ---------- */

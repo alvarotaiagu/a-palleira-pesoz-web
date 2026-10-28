@@ -40,7 +40,7 @@ const nota = (m) => console.log('  ·      ' + m);
 const LLAVE = 'palleira-cookies';
 const sinCookies = `try { localStorage.setItem('${LLAVE}', 'si'); } catch (e) {}`;
 const existe = (f) => fs.existsSync(path.join(RAIZ, f));
-const HAY = { cortina: existe('js/cortina.js') && existe('partes/cortina.html'), paja: existe('js/paja.js'), corredor: existe('js/corredor.js'), vecinos: existe('js/vecinos.js'), mapa: existe('js/mapa.js'), pizarra: existe('js/pizarra.js') };
+const HAY = { cortina: existe('js/cortina.js') && existe('partes/cortina.html'), paja: existe('js/paja.js'), corredor: existe('js/corredor.js'), mapa: existe('js/mapa.js'), pizarra: existe('js/pizarra.js') };
 
 /* ================= 0. archivos (sin navegador) ================= */
 if (toca(1)) {
@@ -71,7 +71,7 @@ const fotosJson = JSON.parse(fs.readFileSync(path.join(RAIZ, 'img/fotos/fotos.js
   comprobar(faltan.length === 0, `index.html: existen los ${rutas.size} archivos que enlaza`, faltan);
 
   /* fotos */
-  const nombres = ['corredor', 'vista-corredor', 'vista-mesa', 'corredor-pasillo', 'corredor-banco', 'corredor-alto', 'patio', 'salon-chimenea', 'salon', 'cocina-comedor', 'comedor', 'salon-dia', 'cocina', 'mesa', 'dorm-dos-camas', 'dorm-matrimonio', 'bano', 'ventana', 'pizarra', 'pesoz-primavera', 'pesoz-burros', 'atardecer', 'valle', 'paicega', 'embalse'];
+  const nombres = ['portada', 'corredor', 'vista-corredor', 'vista-mesa', 'corredor-pasillo', 'corredor-banco', 'corredor-alto', 'patio', 'salon-chimenea', 'salon', 'cocina-comedor', 'comedor', 'salon-dia', 'cocina', 'mesa', 'dorm-dos-camas', 'dorm-matrimonio', 'bano', 'ventana', 'pizarra', 'pesoz-primavera', 'pesoz-burros', 'atardecer', 'valle', 'paicega', 'embalse'];
   comprobar(nombres.every((n) => fotosJson.some((f) => f.nombre === n)), 'están las fotos que piden los agentes por nombre (fotos.json)', nombres.filter((n) => !fotosJson.some((f) => f.nombre === n)));
   const faltanFotos = [];
   for (const f of fotosJson) for (const w of f.anchos) for (const e of ['avif', 'webp', 'jpg']) if (!existe(`img/fotos/${f.nombre}-${w}.${e}`)) faltanFotos.push(`${f.nombre}-${w}.${e}`);
@@ -82,6 +82,10 @@ const fotosJson = JSON.parse(fs.readFileSync(path.join(RAIZ, 'img/fotos/fotos.js
   comprobar(corredor && corredor.ancho <= 1100 && corredor.recorte && corredor.recorte.left >= 20, 'la foto 09 se recorta sin su marco naranja y no pasa de 1100 px', corredor);
   comprobar(lista.every((f) => !/airbnb\/(11|12|13|21)\.jpg/.test(f.ruta)), 'no se usan la 11 (marca de agua), la 12 (casa ajena), la 13 (tarjeta) ni la 21 (lleva firma)');
   comprobar(/fetchpriority="high"/.test(html.match(/<section id="portada"[\s\S]*?<\/section>/)[0]), 'la foto de la portada lleva fetchpriority="high" (es el LCP)');
+  const fPortada = fotosJson.find((f) => f.nombre === 'portada');
+  comprobar(fPortada && fPortada.ancho === 1920 && fPortada.alto === 866 && lista.find((l) => l.nombre === 'portada').ruta === 'fotos/airbnb/27.jpg' && existe('img/portada/marco-1920.webp') && existe('img/portada/marco-960.webp'), 'portada: la foto 27 a 1920×866 (nítida de origen) y el marco del corredor recortado en dos anchos', fPortada);
+  const svgP = html.match(/<svg class="portada__capa portada__letras" viewBox="0 0 1920 866"[\s\S]*?<\/svg>/);
+  comprobar(svgP && (svgP[0].match(/<g class="portada__letra"/g) || []).length === 9 && /<h1 class="portada__tit" id="portada-tit">\s*<span class="solo-lector">A Palleira<\/span>/.test(html) && html.indexOf('portada__letras') < html.indexOf('portada__marco'), 'portada: el titular «A Palleira» (para el lector) y sus 9 letras en SVG con el viewBox de la foto, DETRÁS del marco', svgP && svgP[0].length);
 
   /* textos */
   const texto = html.replace(/<script[\s\S]*?<\/script>/g, '').replace(/<style[\s\S]*?<\/style>/g, '').replace(/<[^>]+>/g, ' ');
@@ -95,7 +99,7 @@ const fotosJson = JSON.parse(fs.readFileSync(path.join(RAIZ, 'img/fotos/fotos.js
   const fechasRaras = [...texto.replace(/CA-1033-AS/g, '').matchAll(/\b(1[0-9]{3})\b/g)].map((m) => m[1]).filter((y) => y !== '1909');
   comprobar(fechasRaras.length === 0, 'la única fecha histórica es la del Palacio de Ron (1909, de DATOS)', fechasRaras);
   comprobar(!/menos poblado|más pequeño|desde 2007|39 km|el concejo con menos/i.test(texto + html.match(/<meta name="description"[^>]*>/)[0]), 'ni «el menos poblado» ni «el más pequeño» ni «desde 2007»: Pesoz empata con Yernes y Tameza (INE)');
-  comprobar(/134 vecinos/.test(texto) && /Yernes y Tameza/.test(texto) && /INE/.test(texto), 'Pesoz: 134 vecinos, los mismos que Yernes y Tameza, fuente INE');
+  comprobar(/concejos con menos vecinos de Asturias: 134, según el INE/.test(texto) && !/id="pesoz"/.test(html), 'Pesoz: «uno de los concejos con menos vecinos» (134, INE) en Alrededor; la sección de los vecinos ya no está');
   comprobar(/OSRM/.test(texto) && /colaboradores de OpenStreetMap/.test(texto) && /28 de octubre de 2026/.test(texto) && /\d,\d km por carretera/.test(texto), '«Alrededor» cita OSRM y OpenStreetMap con su fecha y lleva distancias reales (de rutas.json)');
   comprobar(/animales|mascotas/i.test(texto) && /30 días/.test(texto) && /a convenir con Alejandro/i.test(texto), 'no admite animales, cancelación 30 días y horarios «a convenir con Alejandro»');
   comprobar(/Palleira<\/b> significa «pajar»/.test(html) && /panoyas<\/b> son las mazorcas/.test(html), '«palleira» y «panoya» se explican la primera vez');
@@ -103,10 +107,10 @@ const fotosJson = JSON.parse(fs.readFileSync(path.join(RAIZ, 'img/fotos/fotos.js
 
   /* contrato web ↔ módulos */
   const sitios = [...html.replace(/<!--[\s\S]*?-->/g, '').matchAll(/data-modulo="([^"]+)"/g)].map((m) => m[1]);
-  comprobar(JSON.stringify(sitios) === JSON.stringify(['paja', 'corredor', 'vecinos', 'mapa', 'pizarra', 'paja-pie']), 'los huecos de los módulos, en su orden: paja, corredor, vecinos, mapa, pizarra, paja-pie', sitios);
-  const secs = ['portada', 'casa', 'dentro', 'pesoz', 'alrededor', 'llegar', 'opiniones', 'reservar', 'cierre'];
+  comprobar(JSON.stringify(sitios) === JSON.stringify(['corredor', 'mapa', 'pizarra', 'paja-pie']), 'los huecos de los módulos, en su orden: corredor, mapa, pizarra, paja-pie', sitios);
+  const secs = ['portada', 'casa', 'dentro', 'alrededor', 'llegar', 'opiniones', 'reservar', 'cierre'];
   comprobar(secs.every((id) => new RegExp(`<section[^>]*\\bid="${id}"`).test(html)) && /<section id="casa" class="casa[^"]*" [^>]*aria-labelledby="t-casa">\s*<h2 id="t-casa"/.test(html) && /<section id="cierre"[^>]*>\s*<h2 id="t-cierre" class="solo-lector">/.test(html) && /<footer[^>]*>[\s\S]*data-modulo="paja-pie" aria-hidden="true"/.test(html), 'las secciones del contrato con sus ids y sus titulares');
-  const orden = ['js/cortina.js', 'js/paja.js', 'js/corredor.js', 'js/vecinos.js', 'js/mapa.js', 'js/pizarra.js', 'js/reserva.js', 'js/main.js'].filter(existe);
+  const orden = ['js/cortina.js', 'js/paja.js', 'js/corredor.js', 'js/mapa.js', 'js/pizarra.js', 'js/reserva.js', 'js/main.js'].filter(existe);
   const pos = orden.map((s) => html.indexOf(`src="${s}`));
   comprobar(pos.every((p, i) => p > 0 && (i === 0 || p > pos[i - 1])) && orden.every((s) => new RegExp(`<script src="${s}[^"]*" defer>`).test(html)), 'los scripts, con defer y antes de main.js, en orden', orden);
   comprobar(['entrada', 'paja', 'corredor', 'mapa'].filter((m) => existe(`css/${m}.css`)).every((m) => new RegExp(`href="css/${m}\\.css`).test(html)), 'los CSS de los módulos que existen, enlazados en el <head>');
@@ -131,7 +135,8 @@ comprobar(!/cdn\.|jsdelivr|cdnjs|unpkg/.test(fs.readFileSync(path.join(RAIZ, 'in
 }
 
 /* ================= navegador: uno solo, sin WebGL ================= */
-const browser = await chromium.launch({ headless: true, args: ['--disable-3d-apis'] });
+// con barras de scroll de verdad (Playwright las oculta por defecto): así se ve si algo mide 100vw o innerWidth y se pasa 15 px
+const browser = await chromium.launch({ headless: true, args: ['--disable-3d-apis'], ignoreDefaultArgs: ['--hide-scrollbars'] });
 try {
   async function nueva(op = {}, { script, abortar } = {}) {
     const ctx = await browser.newContext({ viewport: { width: 1280, height: 800 }, deviceScaleFactor: 1, reducedMotion: 'reduce', ...op });
@@ -179,15 +184,15 @@ try {
     await page.goto(PAG);
     await fuera(page);
     await page.waitForTimeout(300);
-    const t = await page.evaluate(() => ({ h1: document.querySelector('#portada h1').textContent.trim(), nota: document.querySelector('.portada__nota').textContent, tel: document.querySelector('#portada a[href^="tel:"]').getAttribute('href'), ver: document.querySelector('#portada [data-reservar]').textContent.trim(), titulo: document.title, noindex: document.querySelector('meta[name=robots]').content }));
-    comprobar(t.h1 === 'Un pajar en Pesoz, hecho casa para cuatro' && /Ver fechas/.test(t.ver) && t.tel === 'tel:+34985250581' && /4,85 en Airbnb · 47 opiniones/.test(t.nota), 'portada: titular, «Ver fechas», teléfono 985 250 581 y la nota 4,85 · 47', t);
+    const t = await page.evaluate(() => ({ h1: document.querySelector('#portada h1 .solo-lector').textContent.trim(), nota: document.querySelector('.portada__nota').textContent, tel: document.querySelector('#portada a[href^="tel:"]').getAttribute('href'), ver: document.querySelector('#portada [data-reservar]').textContent.trim(), titulo: document.title, noindex: document.querySelector('meta[name=robots]').content }));
+    comprobar(t.h1 === 'A Palleira' && /Ver fechas/.test(t.ver) && t.tel === 'tel:+34985250581' && /4,85 en Airbnb · 47 opiniones/.test(t.nota), 'portada: titular, «Ver fechas», teléfono 985 250 581 y la nota 4,85 · 47', t);
     comprobar(await page.evaluate(() => { const p = document.querySelector('#portada picture img'); return !!p && p.complete && p.naturalWidth > 0; }), 'la foto de respaldo de la portada se carga');
     // contraste
     const cs = await contrastes(page, [
-      '.portada__tit', '.portada__baj', '.portada__glosa', '.portada__nota', '.portada .eyebrow', '.portada .btn--marca', '.portada .btn--hueco',
+      '.portada__lema', '.portada__baj', '.portada__nota', '.casa__glosa',
+      '.ficha__tit', '.ficha__cifras .cifra', '.ficha__cifras span', '.ficha__cifras small', '.ficha__servicios b', '.ficha__servicios span', '.ficha__cond dt', '.ficha__cond dd', '.portada .eyebrow', '.portada .btn--marca', '.portada .btn--hueco',
       '.cab__nav a', '.cab__res', '.cab__tel',
-      '#t-dentro', '#t-dentro em', '#dentro .eyebrow', '#dentro .sec-cab__txt', '#dentro .dentro__txt p', '#dentro .dentro__dato', '#dentro figcaption', '.practico h3', '.practico__lista b', '.practico__lista span',
-      '#t-pesoz', '.pesoz__num', '.pesoz__txt p', '.pesoz__txt .enlace',
+      '#t-dentro', '#t-dentro em', '#dentro .eyebrow', '#dentro .sec-cab__txt', '.estancia__txt h3', '.estancia__txt p:not(.estancia__n)', '.estancia__n', '.estancias__indice a', '.estancias__indice a span',
       '#t-alrededor', '#t-alrededor em', '#alrededor .eyebrow', '#alrededor .sec-cab__txt', '.sitios h3', '.sitios p', '#alrededor figcaption',
       '#t-llegar', '.llegar__respaldo p', '.llegar__lista li', '.llegar__dir address', '.llegar__fino', '.llegar .btn--marca', '.map-consent p', '#mapa-btn',
       '#t-opiniones', '#t-opiniones em', '#opiniones .eyebrow', '.nota-grande b', '.nota-grande span', '.nota-grande i', '.opiniones__h', '.apartados dt', '.apartados dd', '.temas b', '.temas span', '.opiniones__fuente', '.opiniones__enlace a',
@@ -195,24 +200,24 @@ try {
       '.cierre__frase', '.cierre__txt p', '.cierre .btn--marca',
       '.pie__tit', '.pie__h', '.pie__cols p', '.pie__fino', '.pie__legal p', '.pie__legal a', '.pie .btn--marca',
     ]);
-    const grandes = new Set(['.pesoz__num', '.nota-grande b', '#t-dentro', '#t-dentro em', '#t-pesoz', '#t-alrededor', '#t-alrededor em', '#t-llegar', '#t-opiniones', '#t-opiniones em', '#reservar-tit em', '.cierre__frase', '.pie__tit', '.portada__tit', '.dia', '.practico h3', '.sitios h3', '.motor__top h3', '.etiqueta h3', '.saber h3']);
+    const grandes = new Set(['.ficha__cifras .cifra', '.ficha__tit', '.estancia__txt h3', '.nota-grande b', '#t-dentro', '#t-dentro em', '#t-alrededor', '#t-alrededor em', '#t-llegar', '#t-opiniones', '#t-opiniones em', '#reservar-tit em', '.cierre__frase', '.pie__tit', '.portada__lema', '.dia', '.sitios h3', '.motor__top h3', '.etiqueta h3', '.saber h3']);
     cs.push(...await contrastes(page, ['.cookies p']));
     const malos = cs.filter(([s, c]) => c === 'falta' || c < (grandes.has(s) ? 3 : 4.5));
     comprobar(malos.length === 0, `contraste WCAG ≥ 4,5:1 (3:1 en los rótulos grandes) en ${cs.length} parejas de texto, en crema, naranja, pizarra y marrón`, malos);
     // el naranja #F67B02 no da más de Lc 52 ni con negro: el texto que va sobre él es grande y firme, y se pide Lc 45
-    const enNaranja = new Set(['.pesoz__num', '.pesoz__txt p', '.pesoz__txt .enlace', '.etiqueta__cab b', '.etiqueta__cab small', '.motor__fino', '.etiqueta h3', '.fechas small']);
+    const enNaranja = new Set(['.etiqueta__cab b', '.etiqueta__cab small', '.motor__fino', '.etiqueta h3', '.fechas small']);
     const flojos = cs.filter(([s, , l]) => l < (grandes.has(s) || enNaranja.has(s) ? 45 : 60));
     nota(`APCA: mínimo Lc ${Math.min(...cs.map(([, , l]) => l))} (peor: ${[...cs].sort((a, b) => a[2] - b[2])[0][0]})`);
     comprobar(flojos.length === 0, 'APCA: ningún texto por debajo de Lc 60 (45 en los rótulos grandes): el marrón sobre naranja y el crema sobre pizarra se leen', flojos);
     const prueba = await contrastes(page, ['.sup-naranja']);
-    nota('naranja ' + await page.evaluate(() => getComputedStyle(document.querySelector('#pesoz')).backgroundColor) + ', marrón ' + await page.evaluate(() => getComputedStyle(document.querySelector('.portada__tit')).color));
+    nota('naranja ' + await page.evaluate(() => getComputedStyle(document.querySelector('.etiqueta')).backgroundColor) + ', letras de la portada ' + await page.evaluate(() => getComputedStyle(document.querySelector('.portada__letras text:not(.sombra)')).fill));
     // el naranja nunca lleva texto blanco pequeño
     const blanco = await page.evaluate(() => [...document.querySelectorAll('.sup-naranja *')].filter((e) => { const c = getComputedStyle(e).color; return /rgb\(25[0-5], 25[0-5], 25[0-5]\)/.test(c) && e.textContent.trim() && getComputedStyle(e).display !== 'none'; }).length);
     comprobar(blanco === 0, 'sobre el naranja no hay texto blanco');
     // la superficie de cada sección
-    const sup = await page.evaluate(() => Object.fromEntries(['portada', 'casa', 'dentro', 'pesoz', 'alrededor', 'llegar', 'opiniones', 'reservar', 'cierre'].map((id) => [id, getComputedStyle(document.getElementById(id)).backgroundColor])));
-    comprobar(sup.portada === 'rgb(246, 123, 2)' || /^rgb\(24\d, 12\d, 2\)|rgb\(22\d, 10\d/.test(sup.portada) || true, 'la portada es naranja', sup.portada);
-    comprobar(sup.pesoz === 'rgb(246, 123, 2)' && sup.dentro === 'rgb(46, 50, 54)' && sup.cierre === 'rgb(46, 50, 54)' && sup.opiniones === 'rgb(59, 28, 10)' && sup.casa === 'rgb(246, 235, 211)', 'superficies: Pesoz naranja, Dentro y cierre pizarra, opiniones marrón, la casa crema', sup);
+    const sup = await page.evaluate(() => Object.fromEntries(['portada', 'casa', 'dentro', 'alrededor', 'llegar', 'opiniones', 'reservar', 'cierre'].map((id) => [id, getComputedStyle(document.getElementById(id)).backgroundColor])));
+    comprobar(sup.portada === 'rgb(46, 50, 54)', 'la portada va sobre pizarra (por si la foto tarda)', sup.portada);
+    comprobar(sup.dentro === 'rgb(46, 50, 54)' && sup.cierre === 'rgb(46, 50, 54)' && sup.opiniones === 'rgb(59, 28, 10)' && sup.casa === 'rgb(246, 235, 211)', 'superficies: Dentro y cierre pizarra, opiniones marrón, la casa crema', sup);
     // ninguna sección con más de una superficie y la cabecera siempre legible: el fondo crema al bajar
     await ir(page, 1500);
     await page.waitForFunction(() => document.getElementById('cab').classList.contains('sc'));
@@ -221,7 +226,7 @@ try {
     // foco con forma propia en cada superficie
     await page.keyboard.press('Tab');
     const focos = [];
-    for (const [sel, esperado] of [['#pesoz .enlace', 'rgb(59, 28, 10)'], ['#dentro [data-visor]', 'rgb(246, 235, 211)'], ['#alrededor .sitios', null], ['#opiniones .enlace', 'rgb(246, 235, 211)'], ['#reservar .enlace', 'rgb(59, 28, 10)'], ['.pie .btn--marca', 'rgb(246, 235, 211)']]) {
+    for (const [sel, esperado] of [['#dentro [data-visor]', 'rgb(246, 235, 211)'], ['#alrededor .sitios', null], ['#opiniones .enlace', 'rgb(246, 235, 211)'], ['#reservar .enlace', 'rgb(59, 28, 10)'], ['.pie .btn--marca', 'rgb(246, 235, 211)']]) {
       if (!esperado) continue;
       if (!(await page.locator(sel).count())) continue;
       await page.locator(sel).first().scrollIntoViewIfNeeded();
@@ -285,9 +290,14 @@ try {
     const api = await page.evaluate(() => { document.getElementById('visor').close(); window.Palleira.visor.abrir(['patio', 'bano', 'ventana'], 'bano'); return { open: document.getElementById('visor').open, n: document.getElementById('visor-img').dataset.nombre, cuenta: document.getElementById('visor-n').textContent }; });
     comprobar(api.open && api.n === 'bano' && api.cuenta === '2 / 3', 'Palleira.visor.abrir(lista, nombre) abre por nombre', api);
     await page.keyboard.press('Escape');
-    // lo práctico y las estancias
-    const txt = await page.evaluate(() => document.getElementById('dentro').innerText);
-    comprobar(/Casa entera/.test(txt) && /Hasta 4 personas/.test(txt) && /Calefacción/.test(txt) && /chimenea/i.test(txt) && /Wifi/.test(txt) && /lavadora/i.test(txt) && /Aparcamiento gratis/.test(txt) && /acceso asfaltado/i.test(txt) && /No admite animales/.test(txt) && /30 días/.test(txt) && /a convenir con Alejandro/i.test(txt), 'lo práctico: casa entera, máximo 4, calefacción, chimenea, wifi, lavadora, aparcamiento, acceso asfaltado, animales, cancelación y horarios a convenir');
+    // la ficha de la casa (en «La casa») y las estancias con su índice
+    const txt = await page.evaluate(() => document.querySelector('.ficha').innerText);
+    comprobar(/Casa entera/.test(txt) && /4\s*plazas/i.test(txt) && /Calefacción/.test(txt) && /Chimenea/.test(txt) && /Wifi/.test(txt) && /Lavadora/.test(txt) && /Aparcamiento gratis/.test(txt) && /acceso asfaltado/i.test(txt) && /Sin animales/.test(txt) && /30 días/.test(txt) && /A convenir con Alejandro/i.test(txt) && await page.evaluate(() => document.querySelectorAll('.ficha__servicios svg').length === 8), 'la ficha: 4 plazas, casa entera, calefacción, chimenea, wifi, lavadora, aparcamiento, acceso asfaltado, sin animales, cancelación y horarios a convenir; 8 iconos', txt.slice(0, 80));
+    const est = await page.evaluate(() => ({ n: document.querySelectorAll('.estancia').length, enlaces: [...document.querySelectorAll('.estancias__indice a')].every((a) => document.querySelector(a.getAttribute('href'))), pegado: getComputedStyle(document.querySelector('.estancias__indice')).position }));
+    await page.locator('#est-dormitorios').scrollIntoViewIfNeeded();
+    await page.evaluate(() => scrollBy(0, 1));
+    const marcada = await page.waitForFunction(() => document.querySelector('.estancias__indice a[aria-current]')?.getAttribute('href') === '#est-dormitorios', null, { timeout: 3000 }).then(() => true, () => false);
+    comprobar(est.n === 5 && est.enlaces && est.pegado === 'sticky' && marcada, 'Dentro: 5 estancias, índice fijo con sus anclas y marca la que se ve', { ...est, marcada });
     comprobar(page._errores.length === 0, 'sin errores', page._errores.slice(0, 3));
     await ctx.close();
   }
@@ -323,7 +333,7 @@ try {
     comprobar(!!par, 'hay tres noches libres en los dos meses que se ven', par);
     if (par) {
       await page.click(`.dia[data-k="${par[0]}"]`);
-      comprobar(await page.evaluate(() => window.__av.length === 0), 'con solo la llegada elegida no se avisa a «134 vecinos» (aún no hay fechas)');
+      comprobar(await page.evaluate(() => window.__av.length === 0), 'con solo la llegada elegida no se lanza palleira:fechas (aún no hay fechas)');
       await page.click(`.dia[data-k="${par[0].slice(0, 8) + String(+par[0].slice(8) + 1).padStart(2, '0')}"]`).catch(() => {});
       // salida a una noche: no vale (mínimo 2)
       const est = await page.evaluate(() => window.Palleira.motor.estado);
@@ -439,14 +449,14 @@ try {
     await page.goto(PAG);
     await fuera(page);
     await page.waitForTimeout(300);
-    const ancho = await page.evaluate(() => [document.documentElement.scrollWidth, innerWidth]);
+    const ancho = await page.evaluate(() => [document.documentElement.scrollWidth, document.documentElement.clientWidth]);
     comprobar(ancho[0] <= ancho[1], `${w}×${h}: sin scroll lateral`, ancho);
     const salen = await page.evaluate(() => [...document.querySelectorAll('main *, footer *')]
-      .filter((e) => { const b = e.getBoundingClientRect(); return b.width && b.right > innerWidth + 1 && !e.closest('[aria-hidden="true"], .vh, .solo-lector, canvas'); })
+      .filter((e) => { const b = e.getBoundingClientRect(); return b.width && b.right > innerWidth + 1 && !e.closest('[aria-hidden="true"], .vh, .solo-lector, canvas, .portada__escena'); })
       .slice(0, 4).map((e) => e.tagName.toLowerCase() + '.' + [...e.classList].join('.')));
-    comprobar(!salen.length, `${w}×${h}: nada se sale por la derecha`, salen);
+    comprobar(!salen.length, `${w}×${h}: nada se sale por la derecha (la escena de la portada se recorta a propósito)`, salen);
     const r = await page.evaluate(() => {
-      const t = document.querySelector('#portada h1').getBoundingClientRect(), cab = document.getElementById('cab').getBoundingClientRect(), b = [...document.querySelectorAll('#portada .btn')].map((x) => x.getBoundingClientRect());
+      const ls = [...document.querySelectorAll('.portada__letra text:not(.sombra)')].map((x) => x.getBoundingClientRect()), t = { top: Math.min(...ls.map((x) => x.top)), left: Math.min(...ls.map((x) => x.left)), right: Math.max(...ls.map((x) => x.right)) }, cab = document.getElementById('cab').getBoundingClientRect(), b = [...document.querySelectorAll('#portada .btn')].map((x) => x.getBoundingClientRect());
       const et = document.querySelector('.portada-texto').getBoundingClientRect(), foto = document.querySelector('#portada picture img, #portada [data-modulo] img');
       const fr = foto && foto.getBoundingClientRect();
       return { h1BajoCab: t.top >= cab.bottom - 1, h1Dentro: t.left >= 0 && t.right <= innerWidth + 1, botones: b.every((x) => x.right <= innerWidth + 1 && x.height >= 44), etiquetaDentro: et.left >= 0 && et.right <= innerWidth + 1, noTapa: et.height <= innerHeight * 0.75 };
@@ -523,17 +533,17 @@ try {
   console.log('\n9. Módulos de los otros agentes y la web sin ellos');
   {
     // sin ningún módulo: la web va con su respaldo
-    const { ctx, page } = await nueva({}, { script: sinCookies, abortar: /\/js\/(cortina|paja|corredor|vecinos|mapa|pizarra)\.js/ });
+    const { ctx, page } = await nueva({}, { script: sinCookies, abortar: /\/js\/(cortina|paja|corredor|mapa|pizarra)\.js/ });
     await page.goto(PAG);
     await fuera(page);
     await page.waitForTimeout(400);
-    for (const m of ['paja', 'corredor', 'vecinos', 'mapa', 'pizarra']) await page.evaluate((m) => document.querySelector(`[data-modulo="${m}"]`).scrollIntoView(), m).then(() => page.waitForTimeout(120));
+    for (const m of ['corredor', 'mapa', 'pizarra']) await page.evaluate((m) => document.querySelector(`[data-modulo="${m}"]`).scrollIntoView(), m).then(() => page.waitForTimeout(120));
     const r = await page.evaluate(() => ({ montados: [...document.querySelectorAll('[data-modulo]')].filter((e) => e.dataset.montado).length, fotos: [...document.querySelectorAll('[data-modulo] img')].filter((i) => i.complete && i.naturalWidth > 0).length, h1: !!document.querySelector('#portada h1').offsetParent, cortina: !!document.getElementById('cortina') && getComputedStyle(document.getElementById('cortina')).display !== 'none' }));
-    comprobar(r.montados === 0 && r.fotos >= 3 && r.h1 && !r.cortina, 'sin los módulos: todo el respaldo visible, ningún error y la cortina no tapa', r);
+    comprobar(r.montados === 0 && r.fotos >= 2 && r.h1 && !r.cortina, 'sin los módulos: todo el respaldo visible, ningún error y la cortina no tapa', r);
     comprobar(page._errores.length === 0, 'sin los módulos no hay errores', page._errores.slice(0, 3));
     await ctx.close();
   }
-  for (const mod of ['paja', 'corredor', 'vecinos', 'mapa', 'pizarra']) {
+  for (const mod of ['corredor', 'mapa', 'pizarra']) {
     if (!HAY[mod]) { nota(`${mod}: aún no está su JS (se queda el respaldo)`); continue; }
     for (const dens of ['paja', 'sobria']) {
       const { ctx, page } = await nueva({ reducedMotion: dens === 'sobria' ? 'reduce' : 'reduce' }, { script: sinCookies });
@@ -541,7 +551,7 @@ try {
       await fuera(page);
       await page.evaluate((m) => document.querySelector(`[data-modulo="${m}"]`).scrollIntoView(), mod);
       const ok = await page.waitForFunction((m) => document.querySelector(`[data-modulo="${m}"]`).dataset.montado === '1', mod, { timeout: 6000 }).then(() => true, () => false);
-      const sc = await page.evaluate(() => [document.documentElement.scrollWidth, innerWidth]);
+      const sc = await page.evaluate(() => [document.documentElement.scrollWidth, document.documentElement.clientWidth]);
       comprobar(ok && sc[0] <= sc[1] && page._errores.length === 0, `${mod} (${dens}): se monta (data-montado="1"), sin scroll lateral y sin errores`, { ok, sc, err: page._errores.slice(0, 2) });
       await ctx.close();
     }
@@ -561,6 +571,19 @@ try {
       const f = await page.evaluate(() => ({ clase: document.documentElement.classList.contains('cortina-fuera'), c: !document.getElementById('cortina') || getComputedStyle(document.getElementById('cortina')).display === 'none', cab: getComputedStyle(document.getElementById('cab')).opacity }));
       comprobar(f.clase && f.c && f.cab === '1', 'la cortina se retira siempre y la cabecera aparece', f);
     } else { await fuera(page); nota('sin cortina todavía (Entrada): nada que probar'); }
+    // la portada: las letras suben a su sitio al abrirse la cortina
+    const letras = await page.waitForFunction(() => document.getElementById('portada').classList.contains('abierta') && [...document.querySelectorAll('.portada__letra')].every((g) => { const t = getComputedStyle(g).transform; return t === 'none' || t === 'matrix(1, 0, 0, 1, 0, 0)'; }), null, { timeout: 6000 }).then(() => true, () => false);
+    comprobar(letras, 'con movimiento: al abrirse la cortina, las 9 letras de «A Palleira» suben a su sitio');
+    // el corredor se mide cuando la cortina ya soltó el scroll y está la barra: nada se pasa del ancho (el fallo de los 15 px)
+    await page.evaluate(() => document.querySelector('[data-modulo="corredor"]').scrollIntoView());
+    await page.waitForFunction(() => document.querySelector('[data-modulo="corredor"]').dataset.montado === '1', null, { timeout: 6000 }).catch(() => {});
+    await page.waitForTimeout(300);
+    const anchoMov = await page.evaluate(() => ({ sw: document.documentElement.scrollWidth, cw: document.documentElement.clientWidth, esc: Math.round(document.querySelector('.corr-escenario')?.getBoundingClientRect().width || 0) }));
+    comprobar(anchoMov.sw <= anchoMov.cw && anchoMov.esc <= anchoMov.cw, 'con movimiento y barra de scroll: sin scroll lateral y el escenario del corredor mide lo que la ventana sin la barra', anchoMov);
+    await page.evaluate(() => scrollTo(0, Math.round(document.getElementById('portada').offsetHeight / 2)));
+    const pMedia = await page.waitForFunction(() => parseFloat(document.getElementById('portada').style.getPropertyValue('--p')) > 0.3, null, { timeout: 3000 }).then(() => true, () => false);
+    comprobar(pMedia, 'al bajar media portada, --p pasa de 0,3 (el marco crece más que el paisaje)');
+    await page.evaluate(() => scrollTo(0, 0));
     // recargar a media página (checklist 12)
     await page.mouse.move(600, 400);
     for (let i = 0; i < 18; i++) { await page.mouse.wheel(0, 140); await page.waitForTimeout(40); }

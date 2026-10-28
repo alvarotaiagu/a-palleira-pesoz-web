@@ -1,7 +1,8 @@
 /* ------------------------------------------------------------------
    A Palleira · Pesoz · «Paja y naranja» · lo común de la página
-   - Monta los módulos (paja, corredor, vecinos, mapa, pizarra, paja-pie) con su respaldo: al acercarse a la pantalla;
-     la portada (paja), cuando la cortina EMPIEZA a abrirse (Palleira.cortina.alAbrirse).
+   - Monta los módulos (corredor, mapa, pizarra, paja-pie) con su respaldo, al acercarse a la pantalla.
+   - La portada «Desde el corredor»: se abre (.abierta) cuando la cortina EMPIEZA a abrirse y, al bajar, --p separa sus capas.
+   - El índice de «Dentro» marca la estancia que se ve.
    - Cabecera con fondo al bajar y la espiga en el enlace activo; menú móvil.
    - Palleira.reservar(), el visor de fotos (Palleira.visor.abrir(lista, nombre)), cookies, mapa de Google a petición,
      el foco del teclado con su muesca y el mando de maqueta (?revision).
@@ -64,7 +65,33 @@
     }
   }
 
-  /* ============ 4. módulos: paja, corredor, vecinos, mapa, pizarra y paja-pie ============ */
+  /* ============ 3 bis. la portada: al bajar, el marco del corredor crece más que el paisaje (--p de 0 a 1) ============ */
+  const portada = $('#portada');
+  let altoPortada = portada ? portada.offsetHeight : 1, pPrev = -1;
+  function pintarPortada() {
+    if (!portada) return;
+    if (!motion || sobria()) { if (pPrev !== -1) { portada.style.removeProperty('--p'); pPrev = -1; } return; }
+    const p = Math.min(1, Math.max(0, scrollY / (altoPortada || 1)));
+    if (p === pPrev) return;
+    pPrev = p;
+    portada.style.setProperty('--p', p.toFixed(4));
+  }
+
+  /* ============ 3 ter. el índice de «Dentro»: la estancia que cruza la franja del centro de la pantalla ============ */
+  const indice = $$('.estancias__indice a');
+  if (indice.length && 'IntersectionObserver' in window) {
+    const ids = indice.map((a) => a.getAttribute('href').slice(1));
+    const dentro = new Set();
+    const ioEst = new IntersectionObserver((es) => {
+      es.forEach((e) => (e.isIntersecting ? dentro.add(e.target.id) : dentro.delete(e.target.id)));
+      const id = ids.find((x) => dentro.has(x));
+      if (!id) return;                                  // entre dos estancias: se queda la que había
+      indice.forEach((a) => { if (a.getAttribute('href') === '#' + id) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
+    }, { rootMargin: '-38% 0px -52% 0px' });
+    ids.forEach((id) => { const el = document.getElementById(id); if (el) ioEst.observe(el); });
+  }
+
+  /* ============ 4. módulos: corredor, mapa, pizarra y paja-pie ============ */
   const montados = new Map();     // el → { inst, respaldo }
   const esperando = new Set();    // cerca de la pantalla, pero su JS aún no ha llegado
   const nombreMod = (el) => ({ 'paja-pie': 'pajaPie' }[el.dataset.modulo] || el.dataset.modulo);
@@ -98,11 +125,10 @@
       montarModulo(el);
     });
   }
-  const portadaMod = $('#portada [data-modulo="paja"]');
   // el montón del pie (paja-pie) se monta AL CARGAR, no al acercarse: si no, sale ya casi lleno y no se ve crecer
   const pajaPie = $('[data-modulo="paja-pie"]');
   if (pajaPie) montarModulo(pajaPie);
-  const todos = $$('[data-modulo]').filter((el) => el !== portadaMod && el !== pajaPie);
+  const todos = $$('[data-modulo]').filter((el) => el !== pajaPie);
   if ('IntersectionObserver' in window) {
     const ioMod = new IntersectionObserver((es) => es.forEach((e) => {
       if (e.isIntersecting) { ioMod.unobserve(e.target); montarModulo(e.target); }
@@ -300,6 +326,7 @@
   function alScroll() {
     pend = 0;
     pintarCabecera();
+    pintarPortada();
     reintentar();
     if (enfocado && muesca.classList.contains('es-fijo')) ponerMuesca();
   }
@@ -328,13 +355,12 @@
   }
   /* fin del MANDO DE MAQUETA */
 
-  /* ============ 5. la cortina (de Entrada): la portada se monta cuando EMPIEZA a abrirse ============ */
+  /* ============ 5. la cortina (de Entrada): la portada se abre cuando la cortina EMPIEZA a abrirse ============ */
   function iniciarCortina() {
   const alAbrirse = (fn) => { if (CO && typeof CO.alAbrirse === 'function') CO.alAbrirse(fn); else fn(); };
   alAbrirse(() => {
     const p = $('#portada');
     if (p) p.classList.add('abierta');
-    if (portadaMod) montarModulo(portadaMod);
   });
   const alRetirarse = (fn) => { if (CO && typeof CO.alRetirarse === 'function') CO.alRetirarse(fn); else fn(); };
   alRetirarse(() => {
@@ -352,6 +378,7 @@
     clearTimeout(tRes);
     tRes = setTimeout(() => {
       anchoVista = innerWidth; altoVista = innerHeight;
+      if (portada) altoPortada = portada.offsetHeight;
       document.dispatchEvent(new CustomEvent('palleira:resize'));
       alScroll();
       ponerMuesca();

@@ -100,7 +100,7 @@
     return { n: n.length, alta, baja, total: alta * PRECIO.alta + baja * PRECIO.baja };
   };
 
-  // el aviso para «134 vecinos»: solo cuando cambia
+  // «palleira:fechas» para quien quiera escucharlo (y las pruebas): solo cuando cambia
   let ultimoAviso = '';
   function avisar() {
     const d = st.ini && st.fin ? { entrada: st.ini, salida: st.fin, personas: st.pers } : null;

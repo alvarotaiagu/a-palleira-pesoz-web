@@ -40,7 +40,6 @@
       texto: 'Un patio con plantas, una fuente y una mesa de merendero. Además, jardín y muebles de jardín.',
       fotos: [['patio', 'El patio con la mesa de merendero']] }
   ];
-  var LISTA = ['4 plazas', '2 dormitorios', '3 camas', '1 baño con 2 lavabos', 'Chimenea con leña', 'Calefacción', 'Terraza', 'Patio con fuente', 'Wifi', 'Lavadora', 'Aparcamiento gratis'];
 
   function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function clamp(v, a, b) { return v < a ? a : v > b ? b : v; }
@@ -141,9 +140,7 @@
       }
     }
     h += '</div></div></div>' +
-      '<div class="corr-zocalo"><p class="corr-zocalo-t">Lo que tiene la casa</p><ul class="corr-lista">';
-    for (i = 0; i < LISTA.length; i++) h += '<li>' + esc(LISTA[i]) + '</li>';
-    h += '</ul></div>';
+      '<div class="corr-zocalo" aria-hidden="true"></div>';   // el suelo de pizarra del corredor; lo que tiene la casa va en la ficha de la Web
     if (!quieto) {
       h += '<section class="corr-ficha" id="' + uid + '-ficha" aria-labelledby="' + uid + '-t" hidden><button type="button" class="corr-cerrar" aria-label="Cerrar la ficha">Cerrar</button><div class="corr-ficha-interior"></div></section>';
     }
@@ -337,6 +334,16 @@
       if (!escritorio) for (var q = 0; q < ristras.length; q++) if (iniciadoFlujo) ristras[q].meta = 1;
       despertar();
     });
+    /* la barra de scroll de escritorio sale cuando la cortina suelta el scroll: cambia clientWidth sin ningún resize */
+    var anchoDoc = document.documentElement.clientWidth;
+    var roDoc = 'ResizeObserver' in window ? new ResizeObserver(function () {
+      var cw = document.documentElement.clientWidth;
+      if (cw === anchoDoc) return;
+      anchoDoc = cw;
+      medir();
+      despertar();
+    }) : null;
+    if (roDoc) roDoc.observe(document.documentElement);
 
     /* empujar: el ratón o el dedo que pasan por una ristra */
     function empujar(r, v, yRel) {
@@ -439,6 +446,7 @@
         if (raf) cancelAnimationFrame(raf);
         raf = 0;
         io.disconnect();
+        if (roDoc) roDoc.disconnect();
         for (var q = 0; q < temporizadores.length; q++) clearTimeout(temporizadores[q]);
         for (q = 0; q < oyentes.length; q++) oyentes[q][0].removeEventListener(oyentes[q][1], oyentes[q][2], oyentes[q][3]);
         el.innerHTML = restaurar;

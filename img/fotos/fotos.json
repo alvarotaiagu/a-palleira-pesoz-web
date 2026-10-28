@@ -1,5 +1,20 @@
 [
  {
+  "nombre": "portada",
+  "anchos": [
+   480,
+   800,
+   1024,
+   1280,
+   1600,
+   1920
+  ],
+  "ancho": 1920,
+  "alto": 866,
+  "origen": "fotos/airbnb/27.jpg",
+  "recorte": null
+ },
+ {
   "nombre": "corredor",
   "anchos": [
    480,

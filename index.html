@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>A Palleira · casa de aldea en Pesoz, Asturias</title>
-<meta name="description" content="A Palleira es un antiguo pajar convertido en casa de aldea en Pesoz, uno de los concejos con menos vecinos de Asturias: casa entera para cuatro, dos dormitorios, chimenea, terraza, patio con fuente y un corredor de madera con panoyas.">
+<meta name="description" content="A Palleira es un antiguo pajar convertido en casa de aldea en Pesoz (Asturias): casa entera para cuatro, dos dormitorios, chimenea, terraza, patio con fuente y un corredor de madera con panoyas.">
 <meta property="og:title" content="A Palleira · un pajar en Pesoz, hecho casa para cuatro">
 <meta property="og:description" content="Casa de aldea entera en Pesoz (Asturias): dos dormitorios, chimenea, el corredor con las panoyas y el valle del Agüeira delante.">
 <!-- script bloqueante: clase «js», entrar siempre arriba (checklist punto 12) y el mando de maqueta (la versión sobria retira la cortina al instante).
@@ -32,11 +32,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chonburi&family=Host+Grotesk:wght@400..600&family=Martian+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="css/estilos.css?v=5460fba6">
+<link rel="stylesheet" href="css/estilos.css?v=b0c8b350">
 <link rel="stylesheet" href="css/entrada.css?v=14f77a85">
 <link rel="stylesheet" href="css/paja.css?v=7c5077e0">
-<link rel="stylesheet" href="css/corredor.css?v=9e0da412">
-<link rel="stylesheet" href="css/mapa.css?v=7cc6c9e5">
+<link rel="stylesheet" href="css/corredor.css?v=192428da">
+<link rel="stylesheet" href="css/mapa.css?v=d72e88a7">
 <link rel="icon" href="marca/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="marca/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="marca/apple-touch-icon.png">
@@ -133,7 +133,7 @@
     <nav class="cab__nav" aria-label="Principal">
       <a href="#casa">La casa</a>
       <a href="#dentro">Dentro</a>
-      <a href="#pesoz">Pesoz</a>
+      <a href="#alrededor">Pesoz</a>
       <a href="#llegar">Cómo llegar</a>
       <a href="#reservar">Reservar</a>
     </nav>
@@ -145,7 +145,7 @@
     <nav aria-label="Menú">
       <a href="#casa"><small>El corredor y las panoyas</small>La casa</a>
       <a href="#dentro"><small>Salón, chimenea, dormitorios</small>Dentro</a>
-      <a href="#pesoz"><small>134 vecinos</small>Pesoz</a>
+      <a href="#alrededor"><small>El pueblo y el valle</small>Pesoz</a>
       <a href="#llegar"><small>El Caleyo, s/n</small>Cómo llegar</a>
       <a href="#reservar"><small>Casa entera, 4 plazas</small>Reservar</a>
     </nav>
@@ -155,20 +155,40 @@
 
 <main id="principal">
 
-  <!-- ============ 1. portada «La paja que se hace casa» (módulo Paja). El respaldo es la foto del corredor; el texto va en una etiqueta de cartel ============ -->
-  <section id="portada" class="portada sup-naranja" data-sup="naranja" aria-labelledby="portada-tit">
-    <div class="portada__modulo" data-modulo="paja">
-      <picture data-foto="corredor"><source type="image/avif" srcset="img/fotos/corredor-480.avif 480w, img/fotos/corredor-800.avif 800w, img/fotos/corredor-1024.avif 1024w, img/fotos/corredor-1100.avif 1100w" sizes="100vw"><source type="image/webp" srcset="img/fotos/corredor-480.webp 480w, img/fotos/corredor-800.webp 800w, img/fotos/corredor-1024.webp 1024w, img/fotos/corredor-1100.webp 1100w" sizes="100vw"><img src="img/fotos/corredor-800.jpg" srcset="img/fotos/corredor-480.jpg 480w, img/fotos/corredor-800.jpg 800w, img/fotos/corredor-1024.jpg 1024w, img/fotos/corredor-1100.jpg 1100w" sizes="100vw" width="1100" height="476" alt="El corredor de madera de la casa, con cuatro ristras de panoyas colgadas de la balaustrada, geranios y el tejado de pizarra" fetchpriority="high" loading="eager" decoding="async"></picture>
+  <!-- ============ 1. portada «Desde el corredor»: la vista desde el corredor (foto 27) y «A Palleira» DETRÁS de los pilares.
+       Tres capas con las mismas coordenadas que la foto (1920×866): el fondo, el titular en SVG y el marco de madera recortado
+       (img/portada/marco-*.webp, de scripts/portada-marco.py). Las letras suben desde detrás del pasamanos al abrirse la cortina ============ -->
+  <section id="portada" class="portada sup-pizarra" data-sup="pizarra" aria-labelledby="portada-tit">
+    <div class="portada__escena">
+      <div class="portada__capa portada__fondo">
+        <picture data-foto="portada"><source type="image/avif" srcset="img/fotos/portada-480.avif 480w, img/fotos/portada-800.avif 800w, img/fotos/portada-1024.avif 1024w, img/fotos/portada-1280.avif 1280w, img/fotos/portada-1600.avif 1600w, img/fotos/portada-1920.avif 1920w" sizes="(max-aspect-ratio: 5/4) 178vw, 100vw"><source type="image/webp" srcset="img/fotos/portada-480.webp 480w, img/fotos/portada-800.webp 800w, img/fotos/portada-1024.webp 1024w, img/fotos/portada-1280.webp 1280w, img/fotos/portada-1600.webp 1600w, img/fotos/portada-1920.webp 1920w" sizes="(max-aspect-ratio: 5/4) 178vw, 100vw"><img src="img/fotos/portada-800.jpg" srcset="img/fotos/portada-480.jpg 480w, img/fotos/portada-800.jpg 800w, img/fotos/portada-1024.jpg 1024w, img/fotos/portada-1280.jpg 1280w, img/fotos/portada-1600.jpg 1600w, img/fotos/portada-1920.jpg 1920w" sizes="(max-aspect-ratio: 5/4) 178vw, 100vw" width="1920" height="866" alt="La vista desde el corredor de la casa: la balaustrada de madera, el Palacio de Ron, los tejados de pizarra de Pesoz y el monte" fetchpriority="high" loading="eager" decoding="async"></picture>
+      </div>
+      <h1 class="portada__tit" id="portada-tit">
+        <span class="solo-lector">A Palleira</span>
+        <svg class="portada__capa portada__letras" viewBox="0 0 1920 866" aria-hidden="true" focusable="false">
+          <!-- cada letra en su sitio (Chonburi a 166 sobre 1920, avances medidos en la fuente): la A a la izquierda del pilar central
+               y «Palleira» entre ese pilar y el poste derecho; la base, a y=362, queda 15 px por debajo del pasamanos -->
+          <g class="portada__letra" style="--i:0"><text x="486" y="368" class="sombra">A</text><text x="480" y="362">A</text></g>
+          <g class="portada__letra" style="--i:1"><text x="708" y="368" class="sombra">P</text><text x="702" y="362">P</text></g>
+          <g class="portada__letra" style="--i:2"><text x="830.8" y="368" class="sombra">a</text><text x="824.8" y="362">a</text></g>
+          <g class="portada__letra" style="--i:3"><text x="937.7" y="368" class="sombra">l</text><text x="931.7" y="362">l</text></g>
+          <g class="portada__letra" style="--i:4"><text x="998.5" y="368" class="sombra">l</text><text x="992.5" y="362">l</text></g>
+          <g class="portada__letra" style="--i:5"><text x="1059.3" y="368" class="sombra">e</text><text x="1053.3" y="362">e</text></g>
+          <g class="portada__letra" style="--i:6"><text x="1168.5" y="368" class="sombra">i</text><text x="1162.5" y="362">i</text></g>
+          <g class="portada__letra" style="--i:7"><text x="1229.9" y="368" class="sombra">r</text><text x="1223.9" y="362">r</text></g>
+          <g class="portada__letra" style="--i:8"><text x="1319.5" y="368" class="sombra">a</text><text x="1313.5" y="362">a</text></g>
+        </svg>
+      </h1>
+      <img class="portada__capa portada__marco" src="img/portada/marco-1920.webp" srcset="img/portada/marco-960.webp 960w, img/portada/marco-1920.webp 1920w" sizes="(max-aspect-ratio: 5/4) 178vw, 100vw" width="1920" height="866" alt="" decoding="async">
     </div>
     <div class="portada-texto">
       <p class="eyebrow">Casa de aldea · Pesoz, Asturias</p>
-      <h1 class="portada__tit" id="portada-tit">Un pajar en Pesoz, hecho casa para cuatro</h1>
-      <p class="portada__baj">Casa de aldea entera en Pesoz, uno de los concejos con menos vecinos de Asturias: dos dormitorios, chimenea, el corredor con las panoyas y el valle del Agüeira delante.</p>
+      <p class="portada__lema">Un pajar en Pesoz, hecho casa para cuatro</p>
+      <p class="portada__baj">Casa entera con dos dormitorios, chimenea y este corredor: delante, el Palacio de Ron y el valle del Agüeira.</p>
       <div class="portada__acc">
         <a class="btn btn--marca" href="#reservar" data-reservar>Ver fechas</a>
         <a class="btn btn--hueco" href="tel:+34985250581">Llamar <span class="mono">985 250 581</span></a>
       </div>
-      <p class="portada__glosa"><b lang="ast">Palleira</b> significa «pajar»: la casa lo fue. Las <b>panoyas</b> son las mazorcas de maíz que se cuelgan a secar en el corredor.</p>
       <p class="portada__nota mono">4,85 en Airbnb · 47 opiniones</p>
     </div>
   </section>
@@ -176,21 +196,40 @@
   <!-- ============ 2. La casa «El corredor» (módulo Corredor). Ningún ancestro con overflow ni transform: el recorrido es sticky ============ -->
   <section id="casa" class="casa sup-crema" data-sup="crema" aria-labelledby="t-casa">
     <h2 id="t-casa" class="casa__tit">La casa, de un corredor a otro</h2>
+    <p class="casa__glosa"><b lang="ast">Palleira</b> significa «pajar»: la casa lo fue. Hoy es casa de aldea entera, para cuatro.</p>
     <div data-modulo="corredor">
       <div class="casa__respaldo env">
         <figure class="casa__foto marco">
           <picture data-foto="corredor"><source type="image/avif" srcset="img/fotos/corredor-480.avif 480w, img/fotos/corredor-800.avif 800w, img/fotos/corredor-1024.avif 1024w, img/fotos/corredor-1100.avif 1100w" sizes="(max-width: 899px) 94vw, 60vw"><source type="image/webp" srcset="img/fotos/corredor-480.webp 480w, img/fotos/corredor-800.webp 800w, img/fotos/corredor-1024.webp 1024w, img/fotos/corredor-1100.webp 1100w" sizes="(max-width: 899px) 94vw, 60vw"><img src="img/fotos/corredor-800.jpg" srcset="img/fotos/corredor-480.jpg 480w, img/fotos/corredor-800.jpg 800w, img/fotos/corredor-1024.jpg 1024w, img/fotos/corredor-1100.jpg 1100w" sizes="(max-width: 899px) 94vw, 60vw" width="1100" height="476" alt="El corredor de madera con cuatro ristras de panoyas, geranios y el zócalo de pizarra" loading="lazy" decoding="async"></picture>
         </figure>
-        <ul class="casa__lista">
-          <li><b class="cifra">4</b> plazas</li>
-          <li><b class="cifra">2</b> dormitorios</li>
-          <li><b class="cifra">3</b> camas</li>
-          <li><b class="cifra">1</b> baño, con dos lavabos</li>
-          <li>Chimenea con leña</li>
-          <li>Terraza y corredor</li>
-          <li>Patio con fuente</li>
-        </ul>
+        <p class="casa__respaldo-txt">Las <b>panoyas</b> son las mazorcas de maíz que se cuelgan a secar en el corredor.</p>
       </div>
+    </div>
+
+    <!-- la ficha: lo que tiene la casa, de un vistazo (cifras, servicios con su icono y las condiciones) -->
+    <div class="ficha env" role="group" aria-labelledby="t-ficha">
+      <h3 class="ficha__tit" id="t-ficha">Lo que tiene la casa</h3>
+      <ul class="ficha__cifras">
+        <li><b class="cifra">4</b><span>plazas</span><small>Casa entera</small></li>
+        <li><b class="cifra">2</b><span>dormitorios</span><small>1 de matrimonio y 1 con dos camas</small></li>
+        <li><b class="cifra">3</b><span>camas</span><small>Una de matrimonio y dos en el otro cuarto</small></li>
+        <li><b class="cifra">1</b><span>baño</span><small>Con dos lavabos</small></li>
+      </ul>
+      <ul class="ficha__servicios">
+        <li><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M4 13h24M6 13v15M26 13v15M9 13l2.5-9h9l2.5 9"/><path d="M16 26.5c-2.8 0-4.3-1.8-4.3-3.9 0-2.2 2-3.2 2.1-5.4 1.9 1 3 2.4 3 4.2.9-.7 1.3-1.7 1.3-2.8 1.3 1.1 2.2 2.4 2.2 4.1 0 2.1-1.5 3.8-4.3 3.8z"/></svg><b>Chimenea con leña</b><span>La leña, incluida</span></li>
+        <li><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect x="6" y="7" width="4" height="18" rx="2"/><rect x="14" y="7" width="4" height="18" rx="2"/><rect x="22" y="7" width="4" height="18" rx="2"/><path d="M10 11h4M18 11h4M10 21h4M18 21h4M3 21h3M26 21h3M8 25v3M24 25v3"/></svg><b>Calefacción</b><span>Además de la chimenea</span></li>
+        <li><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M4.5 12.5a16.5 16.5 0 0 1 23 0M8.8 17a10.4 10.4 0 0 1 14.4 0M13 21.4a4.4 4.4 0 0 1 6 0"/><circle cx="16" cy="25.6" r="1.4" class="lleno"/></svg><b>Wifi y televisión</b><span>Y juegos</span></li>
+        <li><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect x="6" y="4" width="20" height="24" rx="3"/><path d="M6 10h20M10 7h.01M13 7h.01"/><circle cx="16" cy="19" r="5.2"/><path d="M12.6 19.8c1.2-1 2.2-1 3.4 0s2.2 1 3.4 0"/></svg><b>Lavadora y microondas</b><span>Cocina abierta en la sala</span></li>
+        <li><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M3 9h26M3 27h26M5 9V5h22v4M7 9v18M25 9v18"/><path d="M11.5 9c-1.2 2.2-1.2 3.3 0 4.5-1.6 2.8-1.6 6 0 8.5-1 1.6-1 3.2 0 5M16 9c-1.2 2.2-1.2 3.3 0 4.5-1.6 2.8-1.6 6 0 8.5-1 1.6-1 3.2 0 5M20.5 9c-1.2 2.2-1.2 3.3 0 4.5-1.6 2.8-1.6 6 0 8.5-1 1.6-1 3.2 0 5"/></svg><b>Corredor y terraza</b><span>Banco, butacas y vistas</span></li>
+        <li><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M5 20h22M7 20c0 4.4 4 7 9 7s9-2.6 9-7M16 20V8"/><path d="M16 8c-2-3.2-5.6-3.4-7.6-1M16 8c2-3.2 5.6-3.4 7.6-1M8.4 7v3.5M23.6 7v3.5"/></svg><b>Patio con fuente</b><span>Y mesa de merendero</span></li>
+        <li><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect x="5" y="5" width="22" height="22" rx="5"/><path d="M13 23V10h4.6a4 4 0 0 1 0 8H13"/></svg><b>Aparcamiento gratis</b><span>Con acceso asfaltado</span></li>
+        <li><svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><circle cx="9.5" cy="13" r="2.3"/><circle cx="14" cy="8.6" r="2.3"/><circle cx="20" cy="8.6" r="2.3"/><circle cx="24.5" cy="13" r="2.3"/><path d="M10.6 23.4c0-3.8 2.8-7.4 6.4-7.4s5.6 3.2 5.6 6.2c0 2.4-1.6 3.6-3.4 3.6-1.4 0-2-.8-3-.8s-1.6.8-3 .8c-1.6 0-2.6-.9-2.6-2.4zM5 27L27 5"/></svg><b>Sin animales</b><span>No se admiten</span></li>
+      </ul>
+      <dl class="ficha__cond">
+        <div><dt>Alquiler</dt><dd>Casa entera: no se alquila por habitaciones</dd></div>
+        <div><dt>Cancelación</dt><dd>30 días</dd></div>
+        <div><dt>Entrada y salida</dt><dd>A convenir con Alejandro, el dueño</dd></div>
+      </dl>
     </div>
   </section>
 
@@ -215,94 +254,91 @@
     </div>
   </section>
 
-  <!-- ============ 3. Dentro (pizarra): las estancias con sus fotos; el visor se abre por NOMBRE ============ -->
+  <!-- ============ 3. Dentro (pizarra), por estancias: a la izquierda el índice fijo (se marca la estancia que se ve), a la derecha
+       las fotos de cada una, sin marcos y nunca por encima de su tamaño real. El visor se abre por NOMBRE ============ -->
   <section id="dentro" class="sec dentro sup-pizarra" data-sup="pizarra" aria-labelledby="t-dentro">
     <div class="env">
       <header class="sec-cab">
         <p class="eyebrow">Dentro</p>
         <h2 id="t-dentro" data-partir>Piedra, madera <em>y lumbre</em></h2>
-        <p class="sec-cab__txt">Dos plantas con una sala de comedor, salón y cocina abierta, dos dormitorios y un baño. Pulsa una foto para verla grande.</p>
+        <p class="sec-cab__txt">Una sala con comedor, salón y cocina abierta, dos dormitorios y un baño. Pulsa una foto para verla grande.</p>
       </header>
 
-      <div class="dentro__bloque dentro__bloque--sala">
-        <div class="dentro__txt">
-          <h3>La sala</h3>
-          <p>Comedor, salón y cocina abierta en una sola estancia, con vigas de madera en el techo y suelo de baldosas.</p>
-          <p class="dentro__dato mono">Comedor · salón · cocina abierta</p>
-        </div>
-        <figure class="dentro__f dentro__f--a"><button type="button" class="foto-btn" data-visor="cocina-comedor" data-grupo="dentro" aria-label="Ver más grande: la cocina y el comedor"><picture data-foto="cocina-comedor"><source type="image/avif" srcset="img/fotos/cocina-comedor-480.avif 480w, img/fotos/cocina-comedor-800.avif 800w, img/fotos/cocina-comedor-1024.avif 1024w, img/fotos/cocina-comedor-1280.avif 1280w, img/fotos/cocina-comedor-1600.avif 1600w" sizes="(max-width: 899px) 94vw, 52vw"><source type="image/webp" srcset="img/fotos/cocina-comedor-480.webp 480w, img/fotos/cocina-comedor-800.webp 800w, img/fotos/cocina-comedor-1024.webp 1024w, img/fotos/cocina-comedor-1280.webp 1280w, img/fotos/cocina-comedor-1600.webp 1600w" sizes="(max-width: 899px) 94vw, 52vw"><img src="img/fotos/cocina-comedor-800.jpg" srcset="img/fotos/cocina-comedor-480.jpg 480w, img/fotos/cocina-comedor-800.jpg 800w, img/fotos/cocina-comedor-1024.jpg 1024w, img/fotos/cocina-comedor-1280.jpg 1280w, img/fotos/cocina-comedor-1600.jpg 1600w" sizes="(max-width: 899px) 94vw, 52vw" width="1600" height="722" alt="La cocina abierta y el comedor, con techo de madera y la mesa puesta" loading="lazy" decoding="async"></picture></button><figcaption>Cocina y comedor.</figcaption></figure>
-        <figure class="dentro__f dentro__f--b"><button type="button" class="foto-btn" data-visor="comedor" data-grupo="dentro" aria-label="Ver más grande: el comedor, de pie"><picture data-foto="comedor"><source type="image/avif" srcset="img/fotos/comedor-480.avif 480w, img/fotos/comedor-800.avif 800w, img/fotos/comedor-1024.avif 1024w" sizes="(max-width: 899px) 46vw, 20vw"><source type="image/webp" srcset="img/fotos/comedor-480.webp 480w, img/fotos/comedor-800.webp 800w, img/fotos/comedor-1024.webp 1024w" sizes="(max-width: 899px) 46vw, 20vw"><img src="img/fotos/comedor-800.jpg" srcset="img/fotos/comedor-480.jpg 480w, img/fotos/comedor-800.jpg 800w, img/fotos/comedor-1024.jpg 1024w" sizes="(max-width: 899px) 46vw, 20vw" width="1024" height="2270" alt="El comedor visto en vertical, con la mesa larga bajo las vigas" loading="lazy" decoding="async"></picture></button></figure>
-        <figure class="dentro__f dentro__f--c"><button type="button" class="foto-btn" data-visor="salon-dia" data-grupo="dentro" aria-label="Ver más grande: el salón de día"><picture data-foto="salon-dia"><source type="image/avif" srcset="img/fotos/salon-dia-480.avif 480w, img/fotos/salon-dia-800.avif 800w, img/fotos/salon-dia-1024.avif 1024w, img/fotos/salon-dia-1280.avif 1280w" sizes="(max-width: 899px) 46vw, 24vw"><source type="image/webp" srcset="img/fotos/salon-dia-480.webp 480w, img/fotos/salon-dia-800.webp 800w, img/fotos/salon-dia-1024.webp 1024w, img/fotos/salon-dia-1280.webp 1280w" sizes="(max-width: 899px) 46vw, 24vw"><img src="img/fotos/salon-dia-800.jpg" srcset="img/fotos/salon-dia-480.jpg 480w, img/fotos/salon-dia-800.jpg 800w, img/fotos/salon-dia-1024.jpg 1024w, img/fotos/salon-dia-1280.jpg 1280w" sizes="(max-width: 899px) 46vw, 24vw" width="1280" height="960" alt="El salón de día: sofá rojo, mesa de centro y la puerta de entrada" loading="lazy" decoding="async"></picture></button><figcaption>El salón, de día.</figcaption></figure>
-      </div>
+      <div class="estancias">
+        <nav class="estancias__indice" aria-label="Estancias de la casa">
+          <ol>
+            <li><a href="#est-sala"><span class="mono">01</span>La sala</a></li>
+            <li><a href="#est-chimenea"><span class="mono">02</span>La chimenea</a></li>
+            <li><a href="#est-dormitorios"><span class="mono">03</span>Los dormitorios</a></li>
+            <li><a href="#est-bano"><span class="mono">04</span>El baño</a></li>
+            <li><a href="#est-fuera"><span class="mono">05</span>Corredor y patio</a></li>
+          </ol>
+        </nav>
 
-      <div class="dentro__bloque dentro__bloque--chimenea">
-        <figure class="dentro__f dentro__f--grande"><button type="button" class="foto-btn" data-visor="salon-chimenea" data-grupo="dentro" aria-label="Ver más grande: la chimenea y la pared de piedra"><picture data-foto="salon-chimenea"><source type="image/avif" srcset="img/fotos/salon-chimenea-480.avif 480w, img/fotos/salon-chimenea-800.avif 800w, img/fotos/salon-chimenea-1024.avif 1024w, img/fotos/salon-chimenea-1280.avif 1280w, img/fotos/salon-chimenea-1600.avif 1600w" sizes="(max-width: 899px) 94vw, 62vw"><source type="image/webp" srcset="img/fotos/salon-chimenea-480.webp 480w, img/fotos/salon-chimenea-800.webp 800w, img/fotos/salon-chimenea-1024.webp 1024w, img/fotos/salon-chimenea-1280.webp 1280w, img/fotos/salon-chimenea-1600.webp 1600w" sizes="(max-width: 899px) 94vw, 62vw"><img src="img/fotos/salon-chimenea-800.jpg" srcset="img/fotos/salon-chimenea-480.jpg 480w, img/fotos/salon-chimenea-800.jpg 800w, img/fotos/salon-chimenea-1024.jpg 1024w, img/fotos/salon-chimenea-1280.jpg 1280w, img/fotos/salon-chimenea-1600.jpg 1600w" sizes="(max-width: 899px) 94vw, 62vw" width="1600" height="722" alt="El salón de noche: pared de piedra, la chimenea en su marco de ladrillo, un sillón y un sofá" loading="lazy" decoding="async"></picture></button><figcaption>La chimenea, junto a la pared de piedra.</figcaption></figure>
-        <div class="dentro__txt">
-          <h3>La chimenea</h3>
-          <p>Está en un marco de ladrillo, junto a la pared de piedra. La leña está incluida y la calefacción funciona el resto del tiempo.</p>
-          <figure class="dentro__f dentro__f--peq"><button type="button" class="foto-btn" data-visor="salon" data-grupo="dentro" aria-label="Ver más grande: el salón, de pie"><picture data-foto="salon"><source type="image/avif" srcset="img/fotos/salon-480.avif 480w, img/fotos/salon-800.avif 800w, img/fotos/salon-1024.avif 1024w" sizes="(max-width: 899px) 46vw, 20vw"><source type="image/webp" srcset="img/fotos/salon-480.webp 480w, img/fotos/salon-800.webp 800w, img/fotos/salon-1024.webp 1024w" sizes="(max-width: 899px) 46vw, 20vw"><img src="img/fotos/salon-800.jpg" srcset="img/fotos/salon-480.jpg 480w, img/fotos/salon-800.jpg 800w, img/fotos/salon-1024.jpg 1024w" sizes="(max-width: 899px) 46vw, 20vw" width="1024" height="2270" alt="El salón visto en vertical: sillón, sofá y la pared de piedra" loading="lazy" decoding="async"></picture></button></figure>
-        </div>
-      </div>
+        <div class="estancias__lista">
+          <article class="estancia" id="est-sala" aria-labelledby="est-sala-t">
+            <div class="estancia__txt">
+              <p class="estancia__n mono">01</p>
+              <h3 id="est-sala-t">La sala</h3>
+              <p>Comedor, salón y cocina abierta en una sola estancia, con vigas de madera en el techo y suelo de baldosas.</p>
+            </div>
+            <div class="estancia__fotos" style="--cols: 1fr 1.78fr">
+              <figure class="estancia__f estancia__f--ancha" style="--ar: 16 / 9"><button type="button" class="foto-btn" data-visor="cocina-comedor" data-grupo="dentro" aria-label="Ver más grande: la cocina y el comedor"><picture data-foto="cocina-comedor"><source type="image/avif" srcset="img/fotos/cocina-comedor-480.avif 480w, img/fotos/cocina-comedor-800.avif 800w, img/fotos/cocina-comedor-1024.avif 1024w, img/fotos/cocina-comedor-1280.avif 1280w, img/fotos/cocina-comedor-1600.avif 1600w" sizes="(max-width: 899px) 92vw, 62vw"><source type="image/webp" srcset="img/fotos/cocina-comedor-480.webp 480w, img/fotos/cocina-comedor-800.webp 800w, img/fotos/cocina-comedor-1024.webp 1024w, img/fotos/cocina-comedor-1280.webp 1280w, img/fotos/cocina-comedor-1600.webp 1600w" sizes="(max-width: 899px) 92vw, 62vw"><img src="img/fotos/cocina-comedor-800.jpg" srcset="img/fotos/cocina-comedor-480.jpg 480w, img/fotos/cocina-comedor-800.jpg 800w, img/fotos/cocina-comedor-1024.jpg 1024w, img/fotos/cocina-comedor-1280.jpg 1280w, img/fotos/cocina-comedor-1600.jpg 1600w" sizes="(max-width: 899px) 92vw, 62vw" width="1600" height="722" alt="La cocina abierta y el comedor, con techo de madera y la mesa puesta" loading="lazy" decoding="async"></picture></button></figure>
+              <figure class="estancia__f" style="--ar: 3 / 4"><button type="button" class="foto-btn" data-visor="comedor" data-grupo="dentro" aria-label="Ver más grande: el comedor, de pie"><picture data-foto="comedor"><source type="image/avif" srcset="img/fotos/comedor-480.avif 480w, img/fotos/comedor-800.avif 800w, img/fotos/comedor-1024.avif 1024w" sizes="(max-width: 899px) 34vw, 22vw"><source type="image/webp" srcset="img/fotos/comedor-480.webp 480w, img/fotos/comedor-800.webp 800w, img/fotos/comedor-1024.webp 1024w" sizes="(max-width: 899px) 34vw, 22vw"><img src="img/fotos/comedor-800.jpg" srcset="img/fotos/comedor-480.jpg 480w, img/fotos/comedor-800.jpg 800w, img/fotos/comedor-1024.jpg 1024w" sizes="(max-width: 899px) 34vw, 22vw" width="1024" height="2270" alt="El comedor visto en vertical, con la mesa larga bajo las vigas" loading="lazy" decoding="async"></picture></button></figure>
+              <figure class="estancia__f" style="--ar: 4 / 3"><button type="button" class="foto-btn" data-visor="salon-dia" data-grupo="dentro" aria-label="Ver más grande: el salón de día"><picture data-foto="salon-dia"><source type="image/avif" srcset="img/fotos/salon-dia-480.avif 480w, img/fotos/salon-dia-800.avif 800w, img/fotos/salon-dia-1024.avif 1024w, img/fotos/salon-dia-1280.avif 1280w" sizes="(max-width: 899px) 58vw, 40vw"><source type="image/webp" srcset="img/fotos/salon-dia-480.webp 480w, img/fotos/salon-dia-800.webp 800w, img/fotos/salon-dia-1024.webp 1024w, img/fotos/salon-dia-1280.webp 1280w" sizes="(max-width: 899px) 58vw, 40vw"><img src="img/fotos/salon-dia-800.jpg" srcset="img/fotos/salon-dia-480.jpg 480w, img/fotos/salon-dia-800.jpg 800w, img/fotos/salon-dia-1024.jpg 1024w, img/fotos/salon-dia-1280.jpg 1280w" sizes="(max-width: 899px) 58vw, 40vw" width="1280" height="960" alt="El salón de día: sofá rojo, mesa de centro y la puerta de entrada" loading="lazy" decoding="async"></picture></button></figure>
+            </div>
+          </article>
 
-      <div class="dentro__bloque dentro__bloque--dorm">
-        <div class="dentro__txt">
-          <h3>Los dos dormitorios</h3>
-          <p>Uno de matrimonio y otro con dos camas y su televisión: cuatro plazas en total.</p>
-          <p class="dentro__dato mono">1 de matrimonio · 1 con dos camas</p>
-        </div>
-        <figure class="dentro__f dentro__f--a"><button type="button" class="foto-btn" data-visor="dorm-matrimonio" data-grupo="dentro" aria-label="Ver más grande: el dormitorio de matrimonio"><picture data-foto="dorm-matrimonio"><source type="image/avif" srcset="img/fotos/dorm-matrimonio-480.avif 480w, img/fotos/dorm-matrimonio-800.avif 800w, img/fotos/dorm-matrimonio-1024.avif 1024w, img/fotos/dorm-matrimonio-1280.avif 1280w, img/fotos/dorm-matrimonio-1600.avif 1600w" sizes="(max-width: 899px) 94vw, 44vw"><source type="image/webp" srcset="img/fotos/dorm-matrimonio-480.webp 480w, img/fotos/dorm-matrimonio-800.webp 800w, img/fotos/dorm-matrimonio-1024.webp 1024w, img/fotos/dorm-matrimonio-1280.webp 1280w, img/fotos/dorm-matrimonio-1600.webp 1600w" sizes="(max-width: 899px) 94vw, 44vw"><img src="img/fotos/dorm-matrimonio-800.jpg" srcset="img/fotos/dorm-matrimonio-480.jpg 480w, img/fotos/dorm-matrimonio-800.jpg 800w, img/fotos/dorm-matrimonio-1024.jpg 1024w, img/fotos/dorm-matrimonio-1280.jpg 1280w, img/fotos/dorm-matrimonio-1600.jpg 1600w" sizes="(max-width: 899px) 94vw, 44vw" width="1600" height="722" alt="El dormitorio de matrimonio, con cabecero de madera tallada y dos mesillas" loading="lazy" decoding="async"></picture></button><figcaption>El de matrimonio.</figcaption></figure>
-        <figure class="dentro__f dentro__f--b"><button type="button" class="foto-btn" data-visor="dorm-dos-camas" data-grupo="dentro" aria-label="Ver más grande: el dormitorio de dos camas"><picture data-foto="dorm-dos-camas"><source type="image/avif" srcset="img/fotos/dorm-dos-camas-480.avif 480w, img/fotos/dorm-dos-camas-800.avif 800w, img/fotos/dorm-dos-camas-1024.avif 1024w, img/fotos/dorm-dos-camas-1280.avif 1280w, img/fotos/dorm-dos-camas-1600.avif 1600w" sizes="(max-width: 899px) 94vw, 44vw"><source type="image/webp" srcset="img/fotos/dorm-dos-camas-480.webp 480w, img/fotos/dorm-dos-camas-800.webp 800w, img/fotos/dorm-dos-camas-1024.webp 1024w, img/fotos/dorm-dos-camas-1280.webp 1280w, img/fotos/dorm-dos-camas-1600.webp 1600w" sizes="(max-width: 899px) 94vw, 44vw"><img src="img/fotos/dorm-dos-camas-800.jpg" srcset="img/fotos/dorm-dos-camas-480.jpg 480w, img/fotos/dorm-dos-camas-800.jpg 800w, img/fotos/dorm-dos-camas-1024.jpg 1024w, img/fotos/dorm-dos-camas-1280.jpg 1280w, img/fotos/dorm-dos-camas-1600.jpg 1600w" sizes="(max-width: 899px) 94vw, 44vw" width="1600" height="722" alt="El dormitorio con dos camas de forja y toallas dobladas" loading="lazy" decoding="async"></picture></button><figcaption>El de dos camas.</figcaption></figure>
-        <figure class="dentro__f dentro__f--c"><button type="button" class="foto-btn" data-visor="dorm-ventana" data-grupo="dentro" aria-label="Ver más grande: el dormitorio de matrimonio con la ventana"><picture data-foto="dorm-ventana"><source type="image/avif" srcset="img/fotos/dorm-ventana-480.avif 480w, img/fotos/dorm-ventana-800.avif 800w, img/fotos/dorm-ventana-1024.avif 1024w, img/fotos/dorm-ventana-1280.avif 1280w, img/fotos/dorm-ventana-1600.avif 1600w" sizes="(max-width: 899px) 46vw, 24vw"><source type="image/webp" srcset="img/fotos/dorm-ventana-480.webp 480w, img/fotos/dorm-ventana-800.webp 800w, img/fotos/dorm-ventana-1024.webp 1024w, img/fotos/dorm-ventana-1280.webp 1280w, img/fotos/dorm-ventana-1600.webp 1600w" sizes="(max-width: 899px) 46vw, 24vw"><img src="img/fotos/dorm-ventana-800.jpg" srcset="img/fotos/dorm-ventana-480.jpg 480w, img/fotos/dorm-ventana-800.jpg 800w, img/fotos/dorm-ventana-1024.jpg 1024w, img/fotos/dorm-ventana-1280.jpg 1280w, img/fotos/dorm-ventana-1600.jpg 1600w" sizes="(max-width: 899px) 46vw, 24vw" width="1600" height="722" alt="El dormitorio de matrimonio con una ventana y un radiador debajo" loading="lazy" decoding="async"></picture></button></figure>
-        <figure class="dentro__f dentro__f--d"><button type="button" class="foto-btn" data-visor="ventana" data-grupo="dentro" aria-label="Ver más grande: una ventana abierta con geranios"><picture data-foto="ventana"><source type="image/avif" srcset="img/fotos/ventana-480.avif 480w, img/fotos/ventana-800.avif 800w, img/fotos/ventana-1024.avif 1024w" sizes="(max-width: 899px) 46vw, 18vw"><source type="image/webp" srcset="img/fotos/ventana-480.webp 480w, img/fotos/ventana-800.webp 800w, img/fotos/ventana-1024.webp 1024w" sizes="(max-width: 899px) 46vw, 18vw"><img src="img/fotos/ventana-800.jpg" srcset="img/fotos/ventana-480.jpg 480w, img/fotos/ventana-800.jpg 800w, img/fotos/ventana-1024.jpg 1024w" sizes="(max-width: 899px) 46vw, 18vw" width="1024" height="2270" alt="Una ventana abierta con geranios en el alféizar" loading="lazy" decoding="async"></picture></button></figure>
-      </div>
+          <article class="estancia" id="est-chimenea" aria-labelledby="est-chimenea-t">
+            <div class="estancia__txt">
+              <p class="estancia__n mono">02</p>
+              <h3 id="est-chimenea-t">La chimenea</h3>
+              <p>Está en un marco de ladrillo, junto a la pared de piedra. La leña está incluida y la calefacción funciona el resto del tiempo.</p>
+            </div>
+            <div class="estancia__fotos" style="--cols: 2.37fr 1fr">
+              <figure class="estancia__f" style="--ar: 16 / 9"><button type="button" class="foto-btn" data-visor="salon-chimenea" data-grupo="dentro" aria-label="Ver más grande: la chimenea y la pared de piedra"><picture data-foto="salon-chimenea"><source type="image/avif" srcset="img/fotos/salon-chimenea-480.avif 480w, img/fotos/salon-chimenea-800.avif 800w, img/fotos/salon-chimenea-1024.avif 1024w, img/fotos/salon-chimenea-1280.avif 1280w, img/fotos/salon-chimenea-1600.avif 1600w" sizes="(max-width: 899px) 64vw, 44vw"><source type="image/webp" srcset="img/fotos/salon-chimenea-480.webp 480w, img/fotos/salon-chimenea-800.webp 800w, img/fotos/salon-chimenea-1024.webp 1024w, img/fotos/salon-chimenea-1280.webp 1280w, img/fotos/salon-chimenea-1600.webp 1600w" sizes="(max-width: 899px) 64vw, 44vw"><img src="img/fotos/salon-chimenea-800.jpg" srcset="img/fotos/salon-chimenea-480.jpg 480w, img/fotos/salon-chimenea-800.jpg 800w, img/fotos/salon-chimenea-1024.jpg 1024w, img/fotos/salon-chimenea-1280.jpg 1280w, img/fotos/salon-chimenea-1600.jpg 1600w" sizes="(max-width: 899px) 64vw, 44vw" width="1600" height="722" alt="El salón de noche: pared de piedra, la chimenea en su marco de ladrillo, un sillón y un sofá" loading="lazy" decoding="async"></picture></button></figure>
+              <figure class="estancia__f" style="--ar: 3 / 4"><button type="button" class="foto-btn" data-visor="salon" data-grupo="dentro" aria-label="Ver más grande: el salón, de pie"><picture data-foto="salon"><source type="image/avif" srcset="img/fotos/salon-480.avif 480w, img/fotos/salon-800.avif 800w, img/fotos/salon-1024.avif 1024w" sizes="(max-width: 899px) 28vw, 19vw"><source type="image/webp" srcset="img/fotos/salon-480.webp 480w, img/fotos/salon-800.webp 800w, img/fotos/salon-1024.webp 1024w" sizes="(max-width: 899px) 28vw, 19vw"><img src="img/fotos/salon-800.jpg" srcset="img/fotos/salon-480.jpg 480w, img/fotos/salon-800.jpg 800w, img/fotos/salon-1024.jpg 1024w" sizes="(max-width: 899px) 28vw, 19vw" width="1024" height="2270" alt="El salón visto en vertical: sillón, sofá y la pared de piedra" loading="lazy" decoding="async"></picture></button></figure>
+            </div>
+          </article>
 
-      <div class="dentro__bloque dentro__bloque--bano">
-        <figure class="dentro__f dentro__f--a"><button type="button" class="foto-btn" data-visor="bano" data-grupo="dentro" aria-label="Ver más grande: el baño"><picture data-foto="bano"><source type="image/avif" srcset="img/fotos/bano-480.avif 480w, img/fotos/bano-800.avif 800w, img/fotos/bano-1024.avif 1024w, img/fotos/bano-1280.avif 1280w" sizes="(max-width: 899px) 94vw, 40vw"><source type="image/webp" srcset="img/fotos/bano-480.webp 480w, img/fotos/bano-800.webp 800w, img/fotos/bano-1024.webp 1024w, img/fotos/bano-1280.webp 1280w" sizes="(max-width: 899px) 94vw, 40vw"><img src="img/fotos/bano-800.jpg" srcset="img/fotos/bano-480.jpg 480w, img/fotos/bano-800.jpg 800w, img/fotos/bano-1024.jpg 1024w, img/fotos/bano-1280.jpg 1280w" sizes="(max-width: 899px) 94vw, 40vw" width="1280" height="853" alt="El baño, con dos lavabos sobre una encimera de piedra y azulejos decorados" loading="lazy" decoding="async"></picture></button></figure>
-        <div class="dentro__txt">
-          <h3>El baño</h3>
-          <p>Uno solo, con dos lavabos.</p>
-        </div>
-      </div>
+          <article class="estancia" id="est-dormitorios" aria-labelledby="est-dormitorios-t">
+            <div class="estancia__txt">
+              <p class="estancia__n mono">03</p>
+              <h3 id="est-dormitorios-t">Los dos dormitorios</h3>
+              <p>Uno de matrimonio y otro con dos camas y su televisión: cuatro plazas en total.</p>
+            </div>
+            <div class="estancia__fotos" style="--cols: 1.78fr 1.78fr 1fr">
+              <figure class="estancia__f estancia__f--ancha" style="--ar: 16 / 8"><button type="button" class="foto-btn" data-visor="dorm-matrimonio" data-grupo="dentro" aria-label="Ver más grande: el dormitorio de matrimonio"><picture data-foto="dorm-matrimonio"><source type="image/avif" srcset="img/fotos/dorm-matrimonio-480.avif 480w, img/fotos/dorm-matrimonio-800.avif 800w, img/fotos/dorm-matrimonio-1024.avif 1024w, img/fotos/dorm-matrimonio-1280.avif 1280w, img/fotos/dorm-matrimonio-1600.avif 1600w" sizes="(max-width: 899px) 92vw, 62vw"><source type="image/webp" srcset="img/fotos/dorm-matrimonio-480.webp 480w, img/fotos/dorm-matrimonio-800.webp 800w, img/fotos/dorm-matrimonio-1024.webp 1024w, img/fotos/dorm-matrimonio-1280.webp 1280w, img/fotos/dorm-matrimonio-1600.webp 1600w" sizes="(max-width: 899px) 92vw, 62vw"><img src="img/fotos/dorm-matrimonio-800.jpg" srcset="img/fotos/dorm-matrimonio-480.jpg 480w, img/fotos/dorm-matrimonio-800.jpg 800w, img/fotos/dorm-matrimonio-1024.jpg 1024w, img/fotos/dorm-matrimonio-1280.jpg 1280w, img/fotos/dorm-matrimonio-1600.jpg 1600w" sizes="(max-width: 899px) 92vw, 62vw" width="1600" height="722" alt="El dormitorio de matrimonio, con cabecero de madera tallada y dos mesillas" loading="lazy" decoding="async"></picture></button></figure>
+              <figure class="estancia__f" style="--ar: 4 / 3"><button type="button" class="foto-btn" data-visor="dorm-dos-camas" data-grupo="dentro" aria-label="Ver más grande: el dormitorio de dos camas"><picture data-foto="dorm-dos-camas"><source type="image/avif" srcset="img/fotos/dorm-dos-camas-480.avif 480w, img/fotos/dorm-dos-camas-800.avif 800w, img/fotos/dorm-dos-camas-1024.avif 1024w, img/fotos/dorm-dos-camas-1280.avif 1280w, img/fotos/dorm-dos-camas-1600.avif 1600w" sizes="(max-width: 899px) 46vw, 25vw"><source type="image/webp" srcset="img/fotos/dorm-dos-camas-480.webp 480w, img/fotos/dorm-dos-camas-800.webp 800w, img/fotos/dorm-dos-camas-1024.webp 1024w, img/fotos/dorm-dos-camas-1280.webp 1280w, img/fotos/dorm-dos-camas-1600.webp 1600w" sizes="(max-width: 899px) 46vw, 25vw"><img src="img/fotos/dorm-dos-camas-800.jpg" srcset="img/fotos/dorm-dos-camas-480.jpg 480w, img/fotos/dorm-dos-camas-800.jpg 800w, img/fotos/dorm-dos-camas-1024.jpg 1024w, img/fotos/dorm-dos-camas-1280.jpg 1280w, img/fotos/dorm-dos-camas-1600.jpg 1600w" sizes="(max-width: 899px) 46vw, 25vw" width="1600" height="722" alt="El dormitorio con dos camas de forja y toallas dobladas" loading="lazy" decoding="async"></picture></button></figure>
+              <figure class="estancia__f" style="--ar: 4 / 3"><button type="button" class="foto-btn" data-visor="dorm-ventana" data-grupo="dentro" aria-label="Ver más grande: el dormitorio de matrimonio con la ventana"><picture data-foto="dorm-ventana"><source type="image/avif" srcset="img/fotos/dorm-ventana-480.avif 480w, img/fotos/dorm-ventana-800.avif 800w, img/fotos/dorm-ventana-1024.avif 1024w, img/fotos/dorm-ventana-1280.avif 1280w, img/fotos/dorm-ventana-1600.avif 1600w" sizes="(max-width: 899px) 46vw, 25vw"><source type="image/webp" srcset="img/fotos/dorm-ventana-480.webp 480w, img/fotos/dorm-ventana-800.webp 800w, img/fotos/dorm-ventana-1024.webp 1024w, img/fotos/dorm-ventana-1280.webp 1280w, img/fotos/dorm-ventana-1600.webp 1600w" sizes="(max-width: 899px) 46vw, 25vw"><img src="img/fotos/dorm-ventana-800.jpg" srcset="img/fotos/dorm-ventana-480.jpg 480w, img/fotos/dorm-ventana-800.jpg 800w, img/fotos/dorm-ventana-1024.jpg 1024w, img/fotos/dorm-ventana-1280.jpg 1280w, img/fotos/dorm-ventana-1600.jpg 1600w" sizes="(max-width: 899px) 46vw, 25vw" width="1600" height="722" alt="El dormitorio de matrimonio con una ventana y un radiador debajo" loading="lazy" decoding="async"></picture></button></figure>
+              <figure class="estancia__f" style="--ar: 3 / 4"><button type="button" class="foto-btn" data-visor="ventana" data-grupo="dentro" aria-label="Ver más grande: una ventana abierta con geranios"><picture data-foto="ventana"><source type="image/avif" srcset="img/fotos/ventana-480.avif 480w, img/fotos/ventana-800.avif 800w, img/fotos/ventana-1024.avif 1024w" sizes="(max-width: 899px) 46vw, 14vw"><source type="image/webp" srcset="img/fotos/ventana-480.webp 480w, img/fotos/ventana-800.webp 800w, img/fotos/ventana-1024.webp 1024w" sizes="(max-width: 899px) 46vw, 14vw"><img src="img/fotos/ventana-800.jpg" srcset="img/fotos/ventana-480.jpg 480w, img/fotos/ventana-800.jpg 800w, img/fotos/ventana-1024.jpg 1024w" sizes="(max-width: 899px) 46vw, 14vw" width="1024" height="2270" alt="Una ventana abierta con geranios en el alféizar" loading="lazy" decoding="async"></picture></button></figure>
+            </div>
+          </article>
 
-      <div class="dentro__bloque dentro__bloque--fuera">
-        <div class="dentro__txt">
-          <h3>El corredor, la terraza y el patio</h3>
-          <p>El corredor de madera tiene suelo de pizarra, un banco y butacas. La terraza tiene vistas. En el patio, entre plantas, están la fuente y la mesa de merendero.</p>
-          <p class="dentro__dato mono">Corredor · terraza · patio con fuente</p>
-        </div>
-        <figure class="dentro__f dentro__f--a"><button type="button" class="foto-btn" data-visor="corredor-banco" data-grupo="dentro" aria-label="Ver más grande: banco y butacas en el corredor"><picture data-foto="corredor-banco"><source type="image/avif" srcset="img/fotos/corredor-banco-480.avif 480w, img/fotos/corredor-banco-800.avif 800w, img/fotos/corredor-banco-1024.avif 1024w, img/fotos/corredor-banco-1280.avif 1280w" sizes="(max-width: 899px) 46vw, 24vw"><source type="image/webp" srcset="img/fotos/corredor-banco-480.webp 480w, img/fotos/corredor-banco-800.webp 800w, img/fotos/corredor-banco-1024.webp 1024w, img/fotos/corredor-banco-1280.webp 1280w" sizes="(max-width: 899px) 46vw, 24vw"><img src="img/fotos/corredor-banco-800.jpg" srcset="img/fotos/corredor-banco-480.jpg 480w, img/fotos/corredor-banco-800.jpg 800w, img/fotos/corredor-banco-1024.jpg 1024w, img/fotos/corredor-banco-1280.jpg 1280w" sizes="(max-width: 899px) 46vw, 24vw" width="1280" height="1707" alt="Banco de madera y butacas de mimbre en el corredor, junto a la pared de piedra" loading="lazy" decoding="async"></picture></button><figcaption>Banco y butacas en el corredor.</figcaption></figure>
-        <figure class="dentro__f dentro__f--b"><button type="button" class="foto-btn" data-visor="patio" data-grupo="dentro" aria-label="Ver más grande: el patio con la fuente"><picture data-foto="patio"><source type="image/avif" srcset="img/fotos/patio-480.avif 480w, img/fotos/patio-800.avif 800w, img/fotos/patio-1024.avif 1024w, img/fotos/patio-1280.avif 1280w, img/fotos/patio-1600.avif 1600w" sizes="(max-width: 899px) 94vw, 48vw"><source type="image/webp" srcset="img/fotos/patio-480.webp 480w, img/fotos/patio-800.webp 800w, img/fotos/patio-1024.webp 1024w, img/fotos/patio-1280.webp 1280w, img/fotos/patio-1600.webp 1600w" sizes="(max-width: 899px) 94vw, 48vw"><img src="img/fotos/patio-800.jpg" srcset="img/fotos/patio-480.jpg 480w, img/fotos/patio-800.jpg 800w, img/fotos/patio-1024.jpg 1024w, img/fotos/patio-1280.jpg 1280w, img/fotos/patio-1600.jpg 1600w" sizes="(max-width: 899px) 94vw, 48vw" width="1600" height="1200" alt="El patio de piedra con la fuente, plantas y la mesa de merendero delante de la casa" loading="lazy" decoding="async"></picture></button><figcaption>El patio, con la fuente y la mesa de merendero.</figcaption></figure>
-      </div>
+          <article class="estancia" id="est-bano" aria-labelledby="est-bano-t">
+            <div class="estancia__txt">
+              <p class="estancia__n mono">04</p>
+              <h3 id="est-bano-t">El baño</h3>
+              <p>Uno solo, con dos lavabos.</p>
+            </div>
+            <div class="estancia__fotos estancia__fotos--sola">
+              <figure class="estancia__f" style="--ar: 3 / 2"><button type="button" class="foto-btn" data-visor="bano" data-grupo="dentro" aria-label="Ver más grande: el baño"><picture data-foto="bano"><source type="image/avif" srcset="img/fotos/bano-480.avif 480w, img/fotos/bano-800.avif 800w, img/fotos/bano-1024.avif 1024w, img/fotos/bano-1280.avif 1280w" sizes="(max-width: 899px) 92vw, 40vw"><source type="image/webp" srcset="img/fotos/bano-480.webp 480w, img/fotos/bano-800.webp 800w, img/fotos/bano-1024.webp 1024w, img/fotos/bano-1280.webp 1280w" sizes="(max-width: 899px) 92vw, 40vw"><img src="img/fotos/bano-800.jpg" srcset="img/fotos/bano-480.jpg 480w, img/fotos/bano-800.jpg 800w, img/fotos/bano-1024.jpg 1024w, img/fotos/bano-1280.jpg 1280w" sizes="(max-width: 899px) 92vw, 40vw" width="1280" height="853" alt="El baño, con dos lavabos sobre una encimera de piedra y azulejos decorados" loading="lazy" decoding="async"></picture></button></figure>
+            </div>
+          </article>
 
-      <section class="practico" aria-labelledby="t-practico">
-        <h3 id="t-practico">Lo práctico</h3>
-        <ul class="practico__lista">
-          <li><b>Casa entera</b><span>No se alquila por habitaciones</span></li>
-          <li><b>Hasta 4 personas</b><span>Dos dormitorios dobles</span></li>
-          <li><b>Calefacción y chimenea</b><span>La leña, incluida</span></li>
-          <li><b>Wifi, lavadora, microondas y televisión</b><span>Y juegos</span></li>
-          <li><b>Aparcamiento gratis</b><span>Con acceso asfaltado</span></li>
-          <li><b>No admite animales</b><span>Casa de aldea sin mascotas</span></li>
-          <li><b>Cancelación</b><span>30 días</span></li>
-          <li><b>Entrada y salida</b><span>A convenir con Alejandro, el dueño</span></li>
-        </ul>
-      </section>
-    </div>
-  </section>
-
-  <!-- ============ 4. Pesoz «134 vecinos» (módulo Vecinos, de Mapa). Sobre el naranja ============ -->
-  <section id="pesoz" class="pesoz sup-naranja" data-sup="naranja" aria-labelledby="t-pesoz">
-    <h2 id="t-pesoz" class="pesoz__tit">Pesoz, 134 vecinos</h2>
-    <div data-modulo="vecinos">
-      <div class="pesoz__respaldo env">
-        <div class="pesoz__txt">
-          <p class="pesoz__num mono">134</p>
-          <p>Pesoz tiene 134 vecinos según el INE (padrón a 1 de enero de 2025), los mismos que Yernes y Tameza: uno de los concejos con menos vecinos de Asturias.</p>
-          <p>Elige fechas en <a class="enlace" href="#reservar" data-reservar>Reservar</a> y te sumamos.</p>
+          <article class="estancia" id="est-fuera" aria-labelledby="est-fuera-t">
+            <div class="estancia__txt">
+              <p class="estancia__n mono">05</p>
+              <h3 id="est-fuera-t">El corredor, la terraza y el patio</h3>
+              <p>El corredor de madera tiene suelo de pizarra, un banco y butacas. La terraza tiene vistas. En el patio, entre plantas, están la fuente y la mesa de merendero.</p>
+            </div>
+            <div class="estancia__fotos" style="--cols: 1fr 1.78fr">
+              <figure class="estancia__f estancia__f--ancha" style="--ar: 16 / 9"><button type="button" class="foto-btn" data-visor="patio" data-grupo="dentro" aria-label="Ver más grande: el patio con la fuente"><picture data-foto="patio"><source type="image/avif" srcset="img/fotos/patio-480.avif 480w, img/fotos/patio-800.avif 800w, img/fotos/patio-1024.avif 1024w, img/fotos/patio-1280.avif 1280w, img/fotos/patio-1600.avif 1600w" sizes="(max-width: 899px) 92vw, 62vw"><source type="image/webp" srcset="img/fotos/patio-480.webp 480w, img/fotos/patio-800.webp 800w, img/fotos/patio-1024.webp 1024w, img/fotos/patio-1280.webp 1280w, img/fotos/patio-1600.webp 1600w" sizes="(max-width: 899px) 92vw, 62vw"><img src="img/fotos/patio-800.jpg" srcset="img/fotos/patio-480.jpg 480w, img/fotos/patio-800.jpg 800w, img/fotos/patio-1024.jpg 1024w, img/fotos/patio-1280.jpg 1280w, img/fotos/patio-1600.jpg 1600w" sizes="(max-width: 899px) 92vw, 62vw" width="1600" height="1200" alt="El patio de piedra con la fuente, plantas y la mesa de merendero delante de la casa" loading="lazy" decoding="async"></picture></button></figure>
+              <figure class="estancia__f" style="--ar: 3 / 4"><button type="button" class="foto-btn" data-visor="corredor-banco" data-grupo="dentro" aria-label="Ver más grande: banco y butacas en el corredor"><picture data-foto="corredor-banco"><source type="image/avif" srcset="img/fotos/corredor-banco-480.avif 480w, img/fotos/corredor-banco-800.avif 800w, img/fotos/corredor-banco-1024.avif 1024w, img/fotos/corredor-banco-1280.avif 1280w" sizes="(max-width: 899px) 34vw, 22vw"><source type="image/webp" srcset="img/fotos/corredor-banco-480.webp 480w, img/fotos/corredor-banco-800.webp 800w, img/fotos/corredor-banco-1024.webp 1024w, img/fotos/corredor-banco-1280.webp 1280w" sizes="(max-width: 899px) 34vw, 22vw"><img src="img/fotos/corredor-banco-800.jpg" srcset="img/fotos/corredor-banco-480.jpg 480w, img/fotos/corredor-banco-800.jpg 800w, img/fotos/corredor-banco-1024.jpg 1024w, img/fotos/corredor-banco-1280.jpg 1280w" sizes="(max-width: 899px) 34vw, 22vw" width="1280" height="1707" alt="Banco de madera y butacas de mimbre en el corredor, junto a la pared de piedra" loading="lazy" decoding="async"></picture></button></figure>
+              <figure class="estancia__f" style="--ar: 4 / 3"><button type="button" class="foto-btn" data-visor="vista-corredor" data-grupo="dentro" aria-label="Ver más grande: la vista desde el corredor"><picture data-foto="vista-corredor"><source type="image/avif" srcset="img/fotos/vista-corredor-480.avif 480w, img/fotos/vista-corredor-800.avif 800w, img/fotos/vista-corredor-1024.avif 1024w, img/fotos/vista-corredor-1280.avif 1280w, img/fotos/vista-corredor-1600.avif 1600w" sizes="(max-width: 899px) 58vw, 40vw"><source type="image/webp" srcset="img/fotos/vista-corredor-480.webp 480w, img/fotos/vista-corredor-800.webp 800w, img/fotos/vista-corredor-1024.webp 1024w, img/fotos/vista-corredor-1280.webp 1280w, img/fotos/vista-corredor-1600.webp 1600w" sizes="(max-width: 899px) 58vw, 40vw"><img src="img/fotos/vista-corredor-800.jpg" srcset="img/fotos/vista-corredor-480.jpg 480w, img/fotos/vista-corredor-800.jpg 800w, img/fotos/vista-corredor-1024.jpg 1024w, img/fotos/vista-corredor-1280.jpg 1280w, img/fotos/vista-corredor-1600.jpg 1600w" sizes="(max-width: 899px) 58vw, 40vw" width="1600" height="1200" alt="Desde el corredor: los tejados de pizarra de Pesoz, el Palacio de Ron y el valle" loading="lazy" decoding="async"></picture></button></figure>
+            </div>
+          </article>
         </div>
-        <figure class="pesoz__foto marco">
-          <picture data-foto="pesoz-primavera"><source type="image/avif" srcset="img/fotos/pesoz-primavera-480.avif 480w, img/fotos/pesoz-primavera-800.avif 800w, img/fotos/pesoz-primavera-1024.avif 1024w, img/fotos/pesoz-primavera-1280.avif 1280w, img/fotos/pesoz-primavera-1600.avif 1600w" sizes="(max-width: 899px) 94vw, 50vw"><source type="image/webp" srcset="img/fotos/pesoz-primavera-480.webp 480w, img/fotos/pesoz-primavera-800.webp 800w, img/fotos/pesoz-primavera-1024.webp 1024w, img/fotos/pesoz-primavera-1280.webp 1280w, img/fotos/pesoz-primavera-1600.webp 1600w" sizes="(max-width: 899px) 94vw, 50vw"><img src="img/fotos/pesoz-primavera-800.jpg" srcset="img/fotos/pesoz-primavera-480.jpg 480w, img/fotos/pesoz-primavera-800.jpg 800w, img/fotos/pesoz-primavera-1024.jpg 1024w, img/fotos/pesoz-primavera-1280.jpg 1280w, img/fotos/pesoz-primavera-1600.jpg 1600w" sizes="(max-width: 899px) 94vw, 50vw" width="1600" height="1025" alt="Pesoz entre frutales en flor, con los tejados de pizarra y el monte detrás" loading="lazy" decoding="async"></picture>
-        </figure>
       </div>
     </div>
   </section>
@@ -313,7 +349,7 @@
       <header class="sec-cab">
         <p class="eyebrow">Alrededor</p>
         <h2 id="t-alrededor" data-partir>Un pueblo, dos ríos <em>y mucho monte</em></h2>
-        <p class="sec-cab__txt">Lo que hay a mano si te quedas por aquí.</p>
+        <p class="sec-cab__txt">Pesoz es uno de los concejos con menos vecinos de Asturias: 134, según el INE. Esto es lo que hay a mano si te quedas por aquí.</p>
       </header>
       <div class="alrededor__cuerpo">
         <ol class="sitios">
@@ -422,7 +458,7 @@
   </section>
 
   <!-- ============ 8. reservar (DEMOSTRACIÓN, js/reserva.js): la casa entera. El resumen es una etiqueta de cartel naranja con el monograma.
-     Al cambiar fechas o personas lanza «palleira:fechas» en document (lo escucha «134 vecinos») ============ -->
+     Al cambiar fechas o personas lanza «palleira:fechas» en document ============ -->
 <section class="sec reservar sup-crema" id="reservar" data-sup="crema" aria-labelledby="reservar-tit">
   <div class="env">
     <header class="sec-cab reservar__cab">
@@ -498,7 +534,7 @@
       </div>
       <div>
         <h2 class="pie__h">Por aquí</h2>
-        <p><a href="#casa">La casa</a><br><a href="#dentro">Dentro</a><br><a href="#pesoz">Pesoz</a><br><a href="#reservar">Reservar</a></p>
+        <p><a href="#casa">La casa</a><br><a href="#dentro">Dentro</a><br><a href="#alrededor">Pesoz</a><br><a href="#reservar">Reservar</a></p>
       </div>
     </div>
 
@@ -545,12 +581,11 @@
 <!-- los módulos (cada uno en su archivo; si falta alguno, construir.mjs quita su etiqueta y se queda el respaldo del HTML) -->
 <script src="js/cortina.js?v=6d7cde9c" defer></script>
 <script src="js/paja.js?v=0927da4f" defer></script>
-<script src="js/corredor.js?v=327da5ee" defer></script>
-<script src="js/vecinos.js?v=98798d95" defer></script>
+<script src="js/corredor.js?v=88fa3ecc" defer></script>
 <script src="js/mapa.js?v=3a93cd7d" defer></script>
 <script src="js/pizarra.js?v=ea9cc777" defer></script>
 <!-- la web -->
-<script src="js/reserva.js?v=ea6eb6a3" defer></script>
-<script src="js/main.js?v=fc09a46c" defer></script>
+<script src="js/reserva.js?v=62393154" defer></script>
+<script src="js/main.js?v=549b4066" defer></script>
 </body>
 </html>
